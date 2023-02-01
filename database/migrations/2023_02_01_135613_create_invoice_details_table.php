@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('penjualans', function (Blueprint $table) {
+        Schema::create('invoice_details', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');
-            $table->date('tanggal');
-            $table->integer('jumlah');
+            $table->string('invoice_code');
+            $table->foreignId('barang_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('customer_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->enum('status', ['Lunas', 'Belum Lunas'])->default('Belum Lunas');
-            $table->text('keterangan')->nullable();
-            $table->boolean('jenis');
+            $table->integer('discount');
+            $table->integer('subtotal');
+            $table->integer('qty');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penjualans');
+        Schema::dropIfExists('invoice_details');
     }
 };

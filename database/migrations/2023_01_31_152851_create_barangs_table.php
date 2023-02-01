@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->string('kode_barang');
             $table->string('harga');
+            $table->string('harga_dollar');
             $table->timestamps();
         });
     }

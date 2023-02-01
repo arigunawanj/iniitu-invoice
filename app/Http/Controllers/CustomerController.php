@@ -87,19 +87,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        $validator = Validator::make($request->all(), [
-            'nama_customer' => 'required',
-            'kode_customer' => 'required|unique:customers',
-            'alamat_customer' => 'required',
-            'telepon_customer' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            # alert
-        } else {
-            $customer->update($request->all());
-        }
-
+        $customer->update($request->all());
         return redirect('customer');
     }
 
