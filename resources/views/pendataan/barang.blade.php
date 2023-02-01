@@ -26,7 +26,7 @@
                             @foreach ($barang as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->kode_barang }}</td>
+                                    <td> <span class="badge rounded-pill bg-warning">{{ $item->kode_barang }}</span></td>
                                     <td>{{ $item->nama_barang }}</td>
                                     <td>{{ $item->harga }}</td>
                                     <td>{{ $item->harga_dollar }}</td>
@@ -47,6 +47,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                            </tbody>
                                 {{-- MODAL EDIT --}}
                                 <div class="modal fade" id="editData{{ $item->id }}" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -173,7 +174,7 @@
                     {{-- MODAL CLOSE --}}
                 </div>
                 @endforeach
-                </tbody>
+                
                 </table>
             </div>
         </div>
