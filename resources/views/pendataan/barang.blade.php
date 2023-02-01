@@ -61,55 +61,43 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form>
+                        <form action="{{ route('barang.store') }}" method="POST">
+                            @csrf
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
-                                    Customer</label>
+                                    Barang</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                 class="bx bx-user"></i></span>
                                         <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                            placeholder="Masukkan Nama..." aria-label="John Doe"
+                                            placeholder="Masukkan Nama..." name="nama_barang"
                                             aria-describedby="basic-icon-default-fullname2" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kode
-                                    Customer</label>
+                                    Barang</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-company2" class="input-group-text"><i
                                                 class="bx bx-buildings"></i></span>
                                         <input type="text" id="basic-icon-default-company" class="form-control"
-                                            placeholder="Masukkan Kode Customer..." aria-label="ACME Inc."
+                                            placeholder="Masukkan Kode Barang..." name="kode_barang"
                                             aria-describedby="basic-icon-default-company2" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Alamat
-                                    Customer</label>
+                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Harga Barang</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                        <input type="text" id="basic-icon-default-email" class="form-control"
-                                            placeholder="Masukkan Alamat..." aria-label="john.doe"
-                                            aria-describedby="basic-icon-default-email2" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Telepon
-                                    Customer</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                class="bx bx-phone"></i></span>
+                                        <span id="basic-icon-default-phone2" class="input-group-text">
+                                            <i class="bx bx-phone"></i></span>
                                         <input type="text" id="basic-icon-default-phone"
-                                            class="form-control phone-mask" placeholder="Masukkan Telepon..."
-                                            aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+                                            class="form-control phone-mask" placeholder="Masukkan Harga..."
+                                            name="harga" aria-describedby="basic-icon-default-phone2" />
                                     </div>
                                 </div>
                             </div>
