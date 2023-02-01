@@ -20,19 +20,22 @@ use App\Http\Controllers\PenjualanController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('layouts.template');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return view('auth.login');
+    });
 });
 
-
-Route::resource('barang', BarangController::class);
-Route::resource('customer', CustomerController::class);
-Route::resource('detail', DetailController::class);
-Route::resource('faktur', FakturController::class);
-Route::resource('penjualan', PenjualanController::class);
-Route::resource('user', UserController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('barang', BarangController::class);
+    Route::resource('customer', CustomerController::class);
+    Route::resource('detail', DetailController::class);
+    Route::resource('faktur', FakturController::class);
+    Route::resource('penjualan', PenjualanController::class);
+    Route::resource('user', UserController::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
