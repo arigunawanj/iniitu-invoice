@@ -47,12 +47,12 @@ class BarangController extends Controller
         ]);
 
         if ($validator->fails()) {
-            # alert
+            return redirect('barang')->with('error', 'Gagal Tambah Barang');
         } else {
             Barang::create($request->all());
+            return redirect('barang')->with('success', 'Berhasil Tambah Barang');
         }
 
-        return redirect('barang')->with('success', 'Berhasil Tambah Data');
     }
 
     /**
