@@ -215,10 +215,14 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
+                                        <a class="dropdown-item" id="logout">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
+                                        <form name="logoutform" method="post" action="{{ route('logout') }}" id="logout-form" class="d-none">
+                                            @csrf
+                                            <input type="hidden" name="form_name" value="logoutform">
+                                        </form>
                                     </li>
                                 </ul>
                             </li>
@@ -278,9 +282,28 @@
 
     <!-- Main JS -->
     <script src="{{ asset('isi/assets/js/main.js') }}"></script>
+    <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Page JS -->
     <script src="{{ asset('isi/assets/js/dashboards-analytics.js') }}"></script>
+    <script>
+        $('#logout').on("click", function() {
+            swal.fire({
+                title: 'Apa Kamu Yakin mau Logout?',
+                text: "Kamu tidak bisa mengulang lagi",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Keluar!'
+            }).then((result) => { 
+                if (result.value===true) {
+                    $('#logout-form').submit() // this submits the form
+                     
+                } 
+            }) 
+    });   
+    </script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
