@@ -19,7 +19,7 @@ class BarangController extends Controller
     {
         $barang = Barang::all();
         // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('barang', compact('barang'));
+        return view('pendataan.barang', compact('barang'));
     }
 
     /**

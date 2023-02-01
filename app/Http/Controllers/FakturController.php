@@ -6,6 +6,7 @@ use App\Models\Faktur;
 use App\Models\Profil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class FakturController extends Controller
 {
@@ -17,8 +18,8 @@ class FakturController extends Controller
     public function index()
     {
         $faktur = Faktur::all();
-        $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('faktur', compact('faktur'));
+        // $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.faktur', compact('faktur'));
     }
 
     /**

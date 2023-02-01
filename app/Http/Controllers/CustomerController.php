@@ -19,7 +19,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::all();
         // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('customer', compact('customer'));
+        return view('pendataan.customer', compact('customer'));
     }
 
     /**

@@ -19,7 +19,7 @@ class DetailController extends Controller
     {
         $detail = Detail::all();
         // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('detail', compact('detail'));
+        return view('pendataan.detailfaktur', compact('detail'));
     }
 
     /**
