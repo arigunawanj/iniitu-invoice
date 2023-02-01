@@ -48,12 +48,12 @@ class CustomerController extends Controller
         ]);
 
         if ($validator->fails()) {
-            # alert
+            return redirect('barang')->with('error', 'Gagal Tambah Customer');
         } else {
             Customer::create($request->all());
+            return redirect('customer')->with('success', 'Berhasil Tambah Customer');
         }
 
-        return redirect('customer');
     }
 
     /**
@@ -88,7 +88,7 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         $customer->update($request->all());
-        return redirect('customer');
+        return redirect('customer')->with('success', 'Berhasil Ubah Data Customer');
     }
 
     /**
@@ -100,6 +100,6 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-        return redirect('customer');
+        return redirect('customer')->with('success', 'Berhasil Hapus Data Customer');
     }
 }
