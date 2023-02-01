@@ -26,7 +26,7 @@
                             @foreach ($barang as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td> <span class="badge rounded-pill bg-warning">{{ $item->kode_barang }}</span></td>
+                                    <td><span class="badge rounded-pill bg-warning">{{ $item->kode_barang }}</span></td>
                                     <td>{{ $item->nama_barang }}</td>
                                     <td>{{ $item->harga }}</td>
                                     <td>{{ $item->harga_dollar }}</td>
