@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{{ asset('isi/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('isi/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 
     <!-- Page CSS -->
 
@@ -283,7 +284,8 @@
     <!-- Main JS -->
     <script src="{{ asset('isi/assets/js/main.js') }}"></script>
     <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Page JS -->
     <script src="{{ asset('isi/assets/js/dashboards-analytics.js') }}"></script>
     <script>
@@ -304,7 +306,13 @@
             }) 
     });   
     </script>
-
+<script>
+    @if (Session::has('success'))
+        toastr.success("{{ Session::get('success') }}")
+    @elseif (Session::has('error'))
+        toastr.error("{{ Session::get('error') }}")
+    @endif
+</script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>

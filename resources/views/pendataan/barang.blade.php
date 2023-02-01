@@ -255,5 +255,7 @@
         </div>
     </div>
     {{-- MODAL CLOSE --}}
-    </div>
+    
+</div>
+
 @endsection

@@ -52,7 +52,7 @@ class BarangController extends Controller
             Barang::create($request->all());
         }
 
-        return redirect('barang');
+        return redirect('barang')->with('success', 'Berhasil Tambah Data');
     }
 
     /**
@@ -99,6 +99,6 @@ class BarangController extends Controller
     public function destroy(Barang $barang)
     {
         $barang->delete();
-        return redirect('barang');
+        return redirect('barang')->with('success', 'Berhasil Hapus Barang');
     }
 }
