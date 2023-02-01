@@ -86,18 +86,7 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        $validator = Validator::make($request->all(), [
-            'nama_barang' => 'required',
-            'kode_barang' => 'required|unique:barangs',
-            'harga' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            # alert
-        } else {
-            $barang->update($request->all());
-        }
-
+        $barang->update($request->all());
         return redirect('barang');
     }
 
