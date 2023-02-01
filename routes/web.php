@@ -21,7 +21,7 @@ use App\Http\Controllers\PenjualanController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.template');
 });
 
 Route::resource('barang', BarangController::class);
