@@ -21,12 +21,12 @@
                             </div>
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
                                 <img src="{{ asset('storage/'. $item->foto) }}" alt="user-avatar"
-                                    class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+                                    class="d-block rounded" height="100" width="100" id="uploadedAvatar" style="object-fit: cover" />
                                 <div class="button-wrapper">
                                     <p class="text-muted mb-5"><i class='bx bx-buildings'></i> {{ $item->alamat }}</p>
                                 </div>
                                 <div class="button-wrapper">
-                                    <p class="text-muted mb-5"><i class='bx bx-envelope' ></i> arigunawanjatmiko@gmail.com</p>
+                                    <p class="text-muted mb-5"><i class='bx bx-envelope' ></i> {{ $item->email }}</p>
                                 </div>
                                 <div class="button-wrapper">
                                     <p class="text-muted mb-5"><i class='bx bx-phone' ></i> {{ $item->tanggal_lahir }}</p>
@@ -63,7 +63,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Tambah Data Profil</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Edit Data Profil</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
