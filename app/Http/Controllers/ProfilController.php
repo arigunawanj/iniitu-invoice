@@ -73,7 +73,7 @@ class ProfilController extends Controller
 
 
         // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman profil
-        return redirect('profil');
+        return redirect('profil')->with('success', 'Berhasil Menambah Detail Profil');
     }
 
     /**
@@ -146,7 +146,7 @@ class ProfilController extends Controller
             ]);
         }
                 // Jika salah satu kondisi sudah terpenuhi akan dialihkan ke halaman profil
-        return redirect('profil');
+        return redirect('profil')->with('success', 'Berhasil Mengubah Detail Profil');
     }
 
     /**

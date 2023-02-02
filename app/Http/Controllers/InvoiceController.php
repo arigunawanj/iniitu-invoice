@@ -118,7 +118,7 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         $invoice->delete();
-        return redirect('invoice');
+        return redirect('invoice')->with('success', 'Berhasil Menghapus Data');
     }
 
     public function invName($id)

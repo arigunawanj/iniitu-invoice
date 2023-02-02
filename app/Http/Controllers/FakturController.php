@@ -118,7 +118,7 @@ class FakturController extends Controller
     public function destroy(Faktur $faktur)
     {
         $faktur->delete();
-        return redirect('faktur');
+        return redirect('faktur')->with('success', 'Berhasil Menghapus Data');
     }
 
     public function getNama($id)

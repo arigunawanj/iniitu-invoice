@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Profil;
 use App\Models\Customer;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,6 +31,7 @@ class HomeController extends Controller
         $customer = Customer::all()->count();
         $barang = Barang::all()->count();
         $penjualan = Penjualan::all()->sum('jumlah');
-        return view('home', compact('customer', 'barang', 'penjualan'));
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('home', compact('customer', 'barang', 'penjualan', 'profil'));
     }
 }

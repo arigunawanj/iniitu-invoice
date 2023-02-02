@@ -54,12 +54,12 @@ class DetailController extends Controller
         ]);
 
         if ($validator->fails()) {
-            # alert
+            return redirect('detail')->with('error', 'Gagal Tambah Barang Faktur');
         } else {
             Detail::create($request->all());
         }
 
-        return redirect('detail');
+        return redirect('detail')->with('success', 'Berhasil Tambah Barang Faktur');
     }
 
     /**
@@ -105,7 +105,7 @@ class DetailController extends Controller
     public function destroy(Detail $detail)
     {
         $detail->delete();
-        return redirect('detail');
+        return redirect('detail')->with('success', 'Berhasil Menghapus Barang Faktur');
     }
 
     public function getHarga()

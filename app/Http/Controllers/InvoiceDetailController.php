@@ -54,12 +54,12 @@ class InvoiceDetailController extends Controller
         ]);
 
         if ($validator->fails()) {
-            # alert
+            return redirect('invoicedetail')->with('error', 'Gagal Menyimpan Barang Faktur');
         } else {
             InvoiceDetail::create($request->all());
         }
 
-        return redirect('invoicedetail');
+        return redirect('invoicedetail')->with('error', 'Berhasil Menambah Barang Faktur');
 
     }
 
@@ -106,6 +106,6 @@ class InvoiceDetailController extends Controller
     public function destroy(InvoiceDetail $invoicedetail)
     {
         $invoicedetail->delete();
-        return redirect('invoicedetail');
+        return redirect('invoicedetail')->with('success', 'Berhasil Menghapus Barang Faktur');
     }
 }
