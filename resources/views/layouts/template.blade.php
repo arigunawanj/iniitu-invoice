@@ -141,8 +141,8 @@
                                     <div data-i18n="Perfect Scrollbar">Tambah Data Faktur</div>
                                 </a>
                             </li>
-                            <li class="menu-item {{ request()->is('/') ? 'active' : '' }}">
-                                <a href="" class="menu-link">
+                            <li class="menu-item {{ request()->is('invoice') ? 'active' : '' }}">
+                                <a href="/invoice" class="menu-link">
                                     <div data-i18n="Text Divider">Faktur</div>
                                 </a>
                             </li>
