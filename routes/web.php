@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('profil', ProfilController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('status/{penjualan}', [PenjualanController::class, 'status']);
     Route::get('getharga', [DetailController::class, 'getHarga']);
     Route::get('getbarang/{id}', [DetailController::class, 'getBarang']);
     Route::get('getname/{id}', [FakturController::class, 'getNama']);

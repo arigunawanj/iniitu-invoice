@@ -85,4 +85,18 @@ class PenjualanController extends Controller
         $penjualan->delete();
         return redirect('penjualan')->with('success', 'Berhasil Hapus Data Penjualan');
     }
+
+    public function status(Penjualan $penjualan)
+    {
+        if ($penjualan->status == 'Belum Lunas') {
+            $penjualan->update([
+                'status' => 'Lunas',
+            ]);
+        } else {
+            $penjualan->update([
+                'status' => 'Belum Lunas',
+            ]);
+        }
+        return redirect('penjualan');
+    }
 }
