@@ -28,13 +28,21 @@
                             @foreach ($penjualan as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->kode }}</td>
+                                <td><span class="badge rounded-pill bg-warning">{{ $item->kode }}</span></td>
                                 <td>{{ $item->customer->nama_customer }}</td>
                                 <td>{{ $item->tanggal }}</td>
-                                <td>{{ $item->jumlah }}</td>
+                                @if ($item->jenis == 0)
+                                <td>Rp {{ number_format("$item->jumlah",0,",",".") }}</td>
+                                @else
+                                <td>$ {{ number_format("$item->jumlah",2,",",".") }}</td>
+                                @endif
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->keterangan }}</td>
-                                <td>{{ $item->jenis }}</td>
+                                @if ($item->jenis == 0)
+                                <td><span class="badge bg-label-success">Lokal</span> </td>
+                                @else
+                                <td><span class="badge bg-label-info">Inter</span> </td>
+                                @endif
                                 <td>
                                         <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#delData{{ $item->id }}"><i
