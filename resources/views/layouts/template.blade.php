@@ -98,9 +98,20 @@
                         </a>
                     </li>
                     <li class="menu-item">
+                        <a href="" class="menu-link">
+                            <i class='menu-icon bx bx-note'></i>
+                            <div data-i18n="Analytics">Laporan Penjualan</div>
+                        </a>
+                    </li>
+                    
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Faktur Lokal</span>
+                    </li>
+
+                    <li class="menu-item">
                         <a href="javascript:void(0)" class="menu-link menu-toggle">
                             <i class='menu-icon bx bxs-receipt'></i>
-                            <div data-i18n="Extended UI">Faktur</div>
+                            <div data-i18n="Extended UI">Faktur Lokal</div>
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
@@ -110,6 +121,28 @@
                             </li>
                             <li class="menu-item">
                                 <a href="/faktur" class="menu-link">
+                                    <div data-i18n="Text Divider">Faktur</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Faktur Inter</span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class='menu-icon bx bxs-receipt'></i>
+                            <div data-i18n="Extended UI">Faktur Inter</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="/invoicedetail" class="menu-link">
+                                    <div data-i18n="Perfect Scrollbar">Tambah Data Faktur</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="" class="menu-link">
                                     <div data-i18n="Text Divider">Faktur</div>
                                 </a>
                             </li>

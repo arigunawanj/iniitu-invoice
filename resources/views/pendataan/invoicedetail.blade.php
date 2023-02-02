@@ -5,12 +5,11 @@
 <div class="content-wrapper">
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendataan /</span> Detail Faktur</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendataan /</span> Detail Faktur Inter</h4>
             <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahData">Tambah Data</a>
-            <a href="/detail" class="btn btn-warning mb-3">Kembali</a>
               <!-- Basic Bootstrap Table -->
               <div class="card">
-                <h5 class="card-header">Detail Faktur</h5>
+                <h5 class="card-header">Detail Faktur Inter</h5>
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
