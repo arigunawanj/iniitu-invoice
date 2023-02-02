@@ -7,6 +7,7 @@ use App\Models\Detail;
 use App\Models\Faktur;
 use App\Models\Profil;
 use App\Models\Customer;
+use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -52,8 +53,9 @@ class FakturController extends Controller
             'tanggal_faktur' => 'required',
             'customer_id' => 'required',
             'ket_faktur' => 'required',
-            'total_final' => 'required',
+            'total' => 'required',
             'charge' => 'required',
+            'total_final' => 'required',
         ]);
         
         if ($validator->fails()) {
@@ -61,9 +63,16 @@ class FakturController extends Controller
         } else {
             $data = $request->all();
             Faktur::create($data);
+            Penjualan::create([
+                'kode' => $request->kode_faktur,
+                'tanggal' => $request->tanggal_faktur,
+                'customer_id' => $request->customer_id,
+                'jumlah' => $request->total_final,
+                'keterangan' => $request->ket_faktur,
+                'jenis' => 0,
+            ]);
             return redirect('faktur')->with('success', 'Berhasil Menyimpan Data');
         }
-
     }
 
     /**
