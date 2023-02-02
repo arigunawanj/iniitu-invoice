@@ -15,36 +15,62 @@
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Kode Customer</th>
+                        <th>Kode Faktur</th>
+                        <th>Tanggal Faktur</th>
                         <th>Nama Customer</th>
-                        <th>Alamat Customer</th>
-                        <th>Telepon Customer</th>
+                        <th>Keterangan</th>
+                        <th>Total</th>
+                        <th>Admin Charge</th>
+                        <th>Total Final</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="dropdown">
-                              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                              </button>
-                              <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);"
-                                  ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                >
-                                <a class="dropdown-item" href="javascript:void(0);"
-                                  ><i class="bx bx-trash me-1"></i> Delete</a
-                                >
-                              </div>
+                        @foreach ($faktur as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->kode_faktur }}</td>
+                            <td>{{ $item->tanggal_faktur }}</td>
+                            <td>{{ $item->customer->nama_customer }}</td>
+                            <td>{{ $item->ket_faktur }}</td>
+                            <td>{{ $item->total }}</td>
+                            <td>{{ $item->charge }}</td>
+                            <td>{{ $item->total_final }}</td>
+                            <td>
+                                <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
+                                data-bs-target="#delData{{ $item->id }}"><i class="bx bx-trash"></i></a>
+                            </td>
+                        </tr>       
+                        
+                        {{-- MODAL DELETE --}}
+                        <div class="modal fade" id="delData{{ $item->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalCenterTitle">Hapus Data Barang</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('faktur.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="modal-body">
+                                            <div>
+                                                Apa anda yakin ingin menghapus?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                    Tutup
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Hapus</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                          </td>
-                      </tr>
+                            {{-- MODAL CLOSE --}}
+                        </div>
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
