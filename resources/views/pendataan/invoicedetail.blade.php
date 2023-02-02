@@ -46,7 +46,7 @@
                                     <span class="badge bg-label-dark">{{ $item->discount }} %</span> 
                                 @endif
                             </td>
-                            <td>Rp {{ number_format("$item->subtotal",0,",",".") }}</td>
+                            <td>$ {{ number_format("$item->subtotal",0,",",".") }}</td>
                             <td>{{ $item->qty }}</td>
                             <td>
                                 <a class="btn rounded-pill btn-icon btn-outline-danger" href="" data-bs-toggle="modal"
@@ -257,7 +257,7 @@
             $('#total').val(total);
     
             let sementara = parseInt(total) * (parseInt(diskon) / 100);
-            let subtotal = parseInt(parseInt(total) - sementara)
+            let subtotal = parseFloat(parseInt(total) - sementara)
     
             if (!isNaN(subtotal)) {
                 $('#subtotal').val(subtotal);
