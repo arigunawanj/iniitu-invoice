@@ -184,7 +184,7 @@
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-company2" class="input-group-text">
-                                          <i class="bx bx-envelope"></i></span>
+                                            <i class='bx bx-buildings' ></i></span>
                                         <input type="text" id="basic-icon-default-company" name="alamat" class="form-control"
                                             placeholder="Masukkan Alamat..." aria-label="ACME Inc."
                                             aria-describedby="basic-icon-default-company2" />
@@ -195,7 +195,7 @@
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Tanggal Lahir</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span class="input-group-text"><i class='bx bx-key' ></i></span>
+                                        <span class="input-group-text"><i class='bx bxs-face' ></i></span>
                                         <input type="date" id="basic-icon-default-email" name="tanggal_lahir" class="form-control"
                                             placeholder="Masukkan Password..." aria-label="john.doe"
                                             aria-describedby="basic-icon-default-email2" />
@@ -206,7 +206,7 @@
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Foto</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span class="input-group-text"><i class='bx bx-key' ></i></span>
+                                        <span class="input-group-text"><i class='bx bx-photo-album' ></i></span>
                                         <input type="file" id="basic-icon-default-email" name="foto" class="form-control"
                                             placeholder="Masukkan Password..." aria-label="john.doe"
                                             aria-describedby="basic-icon-default-email2" />
