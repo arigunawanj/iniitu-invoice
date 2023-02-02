@@ -56,7 +56,7 @@
                                     
                                 </div>
                                 <span class="d-block mb-1">Penjualan Lokal</span>
-                                <h3 class="card-title text-nowrap mb-2">{{ $penjualan }}</h3>
+                                <h3 class="card-title text-nowrap mb-2">Rp {{ number_format("$lokal",0,",",".") }}</h3>
                             </div>
                         </div>
                     </div>
@@ -69,10 +69,9 @@
                                         <img src="{{ asset('isi/assets/img/icons/unicons/cc-primary.png') }}"
                                             alt="Credit Card" class="rounded" />
                                     </div>
-                                    
                                 </div>
                                 <span class="fw-semibold d-block mb-1">Penjualan Inter</span>
-                                <h3 class="card-title mb-2">$14,857</h3>
+                                <h3 class="card-title mb-2">$ {{ number_format("$inter",2,",",".") }}</h3>
                                
                             </div>
                         </div>

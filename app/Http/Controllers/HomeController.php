@@ -30,8 +30,9 @@ class HomeController extends Controller
     {
         $customer = Customer::all()->count();
         $barang = Barang::all()->count();
-        $penjualan = Penjualan::all()->sum('jumlah');
+        $lokal = Penjualan::where('jenis', 0)->sum('jumlah');
+        $inter = Penjualan::where('jenis', 1)->sum('jumlah');
         $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('home', compact('customer', 'barang', 'penjualan', 'profil'));
+        return view('home', compact('customer', 'barang', 'profil', 'lokal', 'inter'));
     }
 }
