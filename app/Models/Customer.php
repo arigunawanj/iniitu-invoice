@@ -20,6 +20,16 @@ class Customer extends Model
         return $this->hasMany(Faktur::class);
     }
 
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function invoiced()
+    {
+        return $this->hasMany(InvoiceDetail::class);
+    }
+
     public function penjualan()
     {
         return $this->hasMany(Penjualan::class);    

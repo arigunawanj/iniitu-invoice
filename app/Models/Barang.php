@@ -14,4 +14,9 @@ class Barang extends Model
     {
         return $this->hasMany(Detail::class);
     }
+
+    public function invoiced()
+    {
+        return $this->hasMany(InvoiceDetail::class);
+    }
 }

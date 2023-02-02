@@ -7,7 +7,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendataan /</span> Detail Faktur</h4>
             <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahData">Tambah Data</a>
-            <a href="/invoicedetail" class="btn btn-warning mb-3">Tambah Data Non Lokal</a>
+            <a href="/detail" class="btn btn-warning mb-3">Kembali</a>
               <!-- Basic Bootstrap Table -->
               <div class="card">
                 <h5 class="card-header">Detail Faktur</h5>
@@ -26,13 +26,13 @@
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($detail as $item)
+                        @foreach ($dinvoice as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->kode_faktur }}</td>
+                            <td>{{ $item->invoice_code }}</td>
                             <td>{{ $item->barang->nama_barang }}</td>
                             <td>{{ $item->customer->nama_customer }}</td>
-                            <td>{{ $item->diskon }}</td>
+                            <td>{{ $item->discount }}</td>
                             <td>{{ $item->subtotal }}</td>
                             <td>{{ $item->qty }}</td>
                             <td>
@@ -58,7 +58,7 @@
                                         <h5 class="modal-title" id="modalCenterTitle">Hapus Data Detail Faktur</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ route('detail.destroy', $item->id) }}" method="POST">
+                                    <form action="{{ route('invoicedetail.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <div class="modal-body">
@@ -90,7 +90,7 @@
                     <h5 class="modal-title" id="modalCenterTitle">Tambah Detail Faktur</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('detail.store') }}" method="POST">
+                <form action="{{ route('invoicedetail.store') }}" method="POST">
                 @csrf
                     <div class="modal-body">
                         <div class="row">
@@ -102,7 +102,7 @@
                                             <span id="basic-icon-default-company2" class="input-group-text"><i
                                                     class="bx bx-buildings"></i></span>
                                             <input type="text" id="basic-icon-default-company" class="form-control"
-                                                placeholder="Masukkan Kode Customer..." name="kode_faktur"
+                                                placeholder="Masukkan Kode Customer..." name="invoice_code"
                                                 aria-describedby="basic-icon-default-company2" />
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                                     class="bx bx-phone"></i></span>
                                             <input type="text" id="diskon" onkeyup="hasil()"
                                                 class="form-control phone-mask" placeholder="Masukkan Diskon..."
-                                                name="diskon" aria-describedby="basic-icon-default-phone2" />
+                                                name="discount" aria-describedby="basic-icon-default-phone2" />
                                         </div>
                                     </div>
                                 </div>
@@ -225,7 +225,7 @@
                 console.log(response);
                 $(`#harga_barang`).children().remove()
                 response.map((value) => { 
-                    $('#harga_barang').val(value.harga)
+                    $('#harga_barang').val(value.harga_dollar)
                  
                 });
             }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InvoiceDetail;
+use App\Models\Barang;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Models\InvoiceDetail;
+use Illuminate\Support\Facades\Validator;
 
 class InvoiceDetailController extends Controller
 {
@@ -14,7 +17,11 @@ class InvoiceDetailController extends Controller
      */
     public function index()
     {
-        //
+        $dinvoice = InvoiceDetail::all();
+        $barang = Barang::all();
+        $customer = Customer::all();
+        // $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.invoicedetail', compact('dinvoice', 'barang', 'customer'));
     }
 
     /**
@@ -35,7 +42,23 @@ class InvoiceDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'invoice_code' => 'required',
+            'barang_id' => 'required',
+            'customer_id' => 'required',
+            'discount' => 'required', 
+            'subtotal' => 'required', 
+            'qty' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            # alert
+        } else {
+            InvoiceDetail::create($request->all());
+        }
+
+        return redirect('invoicedetail');
+
     }
 
     /**
@@ -78,8 +101,9 @@ class InvoiceDetailController extends Controller
      * @param  \App\Models\InvoiceDetail  $invoiceDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InvoiceDetail $invoiceDetail)
+    public function destroy(InvoiceDetail $invoicedetail)
     {
-        //
+        $invoicedetail->delete();
+        return redirect('invoicedetail');
     }
 }

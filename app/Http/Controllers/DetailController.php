@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\Detail;
 use App\Models\Profil;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -18,8 +20,10 @@ class DetailController extends Controller
     public function index()
     {
         $detail = Detail::all();
+        $barang = Barang::all();
+        $customer = Customer::all();
         // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.detailfaktur', compact('detail'));
+        return view('pendataan.detailfaktur', compact('detail', 'barang', 'customer'));
     }
 
     /**
@@ -102,5 +106,23 @@ class DetailController extends Controller
     {
         $detail->delete();
         return redirect('detail');
+    }
+
+    public function getHarga()
+    {
+        // Mengambil seluruh data yang ada dalam tabel barang
+        $barang = Barang::all();
+
+        // Setelah itu mengembalikannya dalam bentuk respon dan datanya dimuat dalam bentuk JSON
+        return response()->json($barang);
+    }
+
+    public function getBarang($id)
+    {
+        // Mengambil seluruh data yang ada dalam tabel barang dengan kondisi idnya harus sama dengan id request
+        $data = Barang::where('id', $id)->get();
+
+         // Setelah itu mengembalikannya dalam bentuk respon dan datanya dimuat dalam bentuk JSON
+        return response()->json($data);
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\FakturController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\InvoiceDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,14 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('barang', BarangController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('detail', DetailController::class);
+    Route::resource('invoicedetail', InvoiceDetailController::class);
     Route::resource('faktur', FakturController::class);
     Route::resource('penjualan', PenjualanController::class);
     Route::resource('user', UserController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('getharga', [DetailController::class, 'getHarga']);
+    Route::get('getbarang/{id}', [DetailController::class, 'getBarang']);
     
 });
 
