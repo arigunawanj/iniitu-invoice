@@ -260,7 +260,7 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ asset('isi/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js' integrity='sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==' crossorigin='anonymous'></script>
     <script src="{{ asset('isi/assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('isi/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('isi/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
@@ -298,15 +298,13 @@
             }) 
     });   
     </script>
-<script>
-    @if (Session::has('success'))
-        toastr.success("{{ Session::get('success') }}")
-    @elseif (Session::has('error'))
-        toastr.error("{{ Session::get('error') }}")
-    @endif
-</script>
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        @if (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}")
+        @elseif (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}")
+        @endif
+    </script>
 </body>
 
 </html>

@@ -123,7 +123,7 @@
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text"><i
                                                 class="bx bx-phone"></i></span>
-                                        <input type="text" id="charge" class="form-control phone-mask" placeholder="Masukkan Charge..." onkeyup="hasilpendapatan()" />
+                                        <input type="text" id="charge" class="form-control phone-mask" placeholder="Masukkan Charge..." onkeyup="isi()" />
                                         <input type="hidden" name="charge" id="chargesum">
                                     </div>
                                 </div>
@@ -154,55 +154,56 @@
         </div>
     </div>
     {{-- MODAL CLOSE --}}
+    <script>
+        function isi() {
+            let admin = $('#charge').val()
+            let total_harga = $('#total_harga').val()
+    
+            let hasilCharge = parseFloat(total_harga * (parseInt(admin) / 100))
+            $('#chargesum').val(hasilCharge)
+    
+            let total_final = parseInt(parseInt(total_harga) + hasilCharge)
+            $('#total_pp').val(total_final)
+            $('#total_fix').val(total_final)
+        }
+    </script>
+    <script>
+        function nama(id) {
+            $.ajax({
+                type: "get",
+                url: `/getname/${id}`,
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    $(`#nama_cust`).children().remove()
+                    response.map((value) => {
+                        $(`#cust_id`).val(value.customer_id)
+                        $(`#nama_cust`).val(value.nama_customer)
+                    });
+                }
+            });
+    
+            $.ajax({
+                type: "get",
+                url: `/getname/${id}`,
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    let hasil = 0;
+                    response.map((value) => {
+                        let total = value.subtotal
+                        if (total != null && total != "") {
+                            hasil += parseInt(total);
+                        }
+                        $(`#total_harga`).val(hasil)
+                    });
+                }
+            });
+        }
+    </script>
+   
 </div>
 
 
-<script>
-    function nama(id) {
-        $.ajax({
-            type: "get",
-            url: `/getname/${id}`,
-            dataType: "json",
-            success: function(response) {
-                console.log(response);
-                $(`#nama_cust`).children().remove()
-                response.map((value) => {
-                    $(`#cust_id`).val(value.customer_id)
-                    $(`#nama_cust`).val(value.nama_customer)
-                });
-            }
-        });
-
-        $.ajax({
-            type: "get",
-            url: `/getname/${id}`,
-            dataType: "json",
-            success: function(response) {
-                console.log(response);
-                let hasil = 0;
-                response.map((value) => {
-                    let total = value.subtotal
-                    if (total != null && total != "") {
-                        hasil += parseInt(total);
-                    }
-                    $(`#total_harga`).val(hasil)
-                });
-            }
-        });
-    }
-</script>
-<script>
-    function hasilpendapatan() {
-        let admin = $('#charge').val()
-        let total_harga = $('#total_harga').val()
-
-        let hasilCharge = parseFloat(total_harga * (parseInt(admin) / 100))
-        $('#chargesum').val(hasilCharge)
-
-        let total_final = parseInt(parseInt(total_harga) + hasilCharge)
-        $('#total_pp').text(total_final)
-        $('#total_fix').val(total_final)
-    }
-</script>
 
 @endsection
