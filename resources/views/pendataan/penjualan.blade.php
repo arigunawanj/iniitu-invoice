@@ -49,7 +49,7 @@
                                 @endif
                                 <td>
                                     @if ($item->status == 'Lunas')
-                                    <a class="btn rounded-pill btn-icon btn-outline-info" href="/status/{{ $item->id }}" ><i class="bx bx-trash"></i></a>
+                                    <a class="btn rounded-pill btn-icon btn-outline-info" href="/status/{{ $item->id }}" ><i class='bx bx-transfer' ></i></a>
                                     @endif
                                         <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#delData{{ $item->id }}"><i
