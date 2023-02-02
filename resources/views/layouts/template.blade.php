@@ -47,6 +47,7 @@
 
 <body>
     <!-- Layout wrapper -->
+    
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
@@ -65,7 +66,7 @@
                 </div>
 
                 <div class="menu-inner-shadow"></div>
-
+                @if (DB::table('profils')->where('user_id', Auth::user()->id)->exists())
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
                     <li class="menu-item {{ request()->is('home') ? 'active' : '' }}">
@@ -148,7 +149,9 @@
                             </li>
                         </ul>
                     </li>
-
+                </ul>
+                @else
+                @endif
             </aside>
             <!-- / Menu -->
 
@@ -165,14 +168,15 @@
                     </div>
 
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-
+                        @if (DB::table('profils')->where('user_id', Auth::user()->id)->exists())
+                        @foreach ($profil as $item)
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ asset('isi/assets/img/avatars/1.png') }}" alt
+                                        <img src="{{ asset('storage/'.$item->foto) }}" alt
                                             class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
@@ -182,13 +186,12 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ asset('isi/assets/img/avatars/1.png') }}" alt
-                                                            class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="{{ asset('storage/' .$item->foto) }}" alt
+                                                        class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">Ari Gunawan</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-semibold d-block">{{ $item->nama }}</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -219,6 +222,61 @@
                             </li>
                             <!--/ User -->
                         </ul>
+                        @endforeach
+                        @else
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <!-- User -->
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                                    data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <img src="" alt
+                                            class="w-px-40 h-auto rounded-circle" />
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar avatar-online">
+                                                        <img src="" alt
+                                                        class="w-px-40 h-auto rounded-circle" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <span class="fw-semibold d-block">{{ Auth::user()->username }}</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/profil">
+                                            <i class="bx bx-user me-2"></i>
+                                            <span class="align-middle">Edit Profil</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" id="logout">
+                                            <i class="bx bx-power-off me-2"></i>
+                                            <span class="align-middle">Log Out</span>
+                                        </a>
+                                        <form name="logoutform" method="post" action="{{ route('logout') }}" id="logout-form" class="d-none">
+                                            @csrf
+                                            <input type="hidden" name="form_name" value="logoutform">
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ User -->
+                        </ul>
+                        @endif
                     </div>
                 </nav>
 

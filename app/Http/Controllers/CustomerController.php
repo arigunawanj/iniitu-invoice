@@ -18,8 +18,8 @@ class CustomerController extends Controller
     public function index()
     {
         $customer = Customer::all();
-        // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.customer', compact('customer'));
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.customer', compact('customer', 'profil'));
     }
 
     /**

@@ -18,8 +18,8 @@ class BarangController extends Controller
     public function index()
     {
         $barang = Barang::all();
-        // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.barang', compact('barang'));
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.barang', compact('barang', 'profil'));
     }
 
     /**

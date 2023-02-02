@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profil;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenjualanController extends Controller
 {
@@ -15,8 +17,8 @@ class PenjualanController extends Controller
     public function index()
     {
         $penjualan = Penjualan::all();
-        // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.penjualan', compact('penjualan'));
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.penjualan', compact('penjualan', 'profil'));
     }
 
     /**

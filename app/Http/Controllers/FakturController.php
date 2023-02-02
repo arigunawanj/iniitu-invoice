@@ -26,8 +26,8 @@ class FakturController extends Controller
         $barang = Barang::all();
         $detail = Detail::all();
         $dfaktur = $detail->unique('kode_faktur');
-        // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.faktur', compact('faktur', 'customer', 'barang', 'detail', 'dfaktur'));
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.faktur', compact('faktur', 'customer', 'barang', 'detail', 'dfaktur', 'profil'));
     }
 
     /**

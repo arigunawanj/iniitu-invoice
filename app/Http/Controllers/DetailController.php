@@ -22,8 +22,8 @@ class DetailController extends Controller
         $detail = Detail::all();
         $barang = Barang::all();
         $customer = Customer::all();
-        // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.detailfaktur', compact('detail', 'barang', 'customer'));
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.detailfaktur', compact('detail', 'barang', 'customer', 'profil'));
     }
 
     /**

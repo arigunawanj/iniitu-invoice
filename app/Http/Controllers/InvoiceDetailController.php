@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Profil;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Models\InvoiceDetail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class InvoiceDetailController extends Controller
@@ -20,8 +22,8 @@ class InvoiceDetailController extends Controller
         $dinvoice = InvoiceDetail::all();
         $barang = Barang::all();
         $customer = Customer::all();
-        // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.invoicedetail', compact('dinvoice', 'barang', 'customer'));
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.invoicedetail', compact('dinvoice', 'barang', 'customer', 'profil'));
     }
 
     /**
