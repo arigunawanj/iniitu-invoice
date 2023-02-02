@@ -29,7 +29,7 @@
                         @foreach ($invoice as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->invoice_code }}</td>
+                            <td><span class="badge bg-label-warning">{{ $item->invoice_code }}</span></td>
                             <td>{{ $item->invoice_date }}</td>
                             <td>{{ $item->customer->nama_customer }}</td>
                             <td>{{ $item->description }}</td>

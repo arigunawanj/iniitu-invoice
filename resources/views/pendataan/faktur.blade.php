@@ -29,13 +29,13 @@
                         @foreach ($faktur as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->kode_faktur }}</td>
+                            <td><span class="badge bg-label-warning">{{ $item->kode_faktur }}</span></td>
                             <td>{{ $item->tanggal_faktur }}</td>
                             <td>{{ $item->customer->nama_customer }}</td>
                             <td>{{ $item->ket_faktur }}</td>
-                            <td>{{ $item->total }}</td>
-                            <td>{{ $item->charge }}</td>
-                            <td>{{ $item->total_final }}</td>
+                            <td>Rp {{ number_format("$item->total",0,",",".") }}</td>
+                            <td>Rp {{ number_format("$item->charge",0,",",".") }}</td>
+                            <td>Rp {{ number_format("$item->total_final",0,",",".") }}</td>
                             <td>
                                 <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
                                 data-bs-target="#delData{{ $item->id }}"><i class="bx bx-trash"></i></a>
