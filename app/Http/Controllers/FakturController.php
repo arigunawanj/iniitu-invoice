@@ -57,13 +57,13 @@ class FakturController extends Controller
         ]);
         
         if ($validator->fails()) {
-            # alert
+            return redirect('faktur')->with('error', 'Gagal Menyimpan Data');
         } else {
             $data = $request->all();
             Faktur::create($data);
+            return redirect('faktur')->with('success', 'Berhasil Menyimpan Data');
         }
 
-        return redirect('faktur');
     }
 
     /**

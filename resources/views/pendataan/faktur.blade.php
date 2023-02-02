@@ -61,7 +61,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form>
+                        <form action="{{ route('faktur.store') }}" method="POST">
+                            @csrf
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kode
                                     Faktur</label>
@@ -122,9 +123,7 @@
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text"><i
                                                 class="bx bx-phone"></i></span>
-                                        <input type="text" id="charge" onkeyup="total()"
-                                            class="form-control phone-mask" placeholder="Masukkan Charge..."
-                                            aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+                                        <input type="text" id="charge" class="form-control phone-mask" placeholder="Masukkan Charge..." onkeyup="hasilpendapatan()" />
                                         <input type="hidden" name="charge" id="chargesum">
                                     </div>
                                 </div>
@@ -137,24 +136,19 @@
                                                 class="bx bx-phone"></i></span>
                                         <input type="text" id="total_pp" disabled
                                             class="form-control phone-mask" placeholder="Total Final..."
-                                            aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+                                            />
                                         <input type="hidden" name="total_final" id="total_fix">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-end">
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Send</button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Tutup
+                        </button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -195,17 +189,19 @@
                 });
             }
         });
+    }
+</script>
+<script>
+    function hasilpendapatan() {
+        let admin = $('#charge').val()
+        let total_harga = $('#total_harga').val()
 
-        // $.ajax({
-        //     type: "get",
-        //     url: `/getbfaktur/${id}`,
-        //     dataType: "json",
-        //     success: function (response) {
-        //         response.map((value) => {
-        //             $('#barang_faktur').text(value)
-        //         })
-        //     }
-        // });
+        let hasilCharge = parseFloat(total_harga * (parseInt(admin) / 100))
+        $('#chargesum').val(hasilCharge)
+
+        let total_final = parseInt(parseInt(total_harga) + hasilCharge)
+        $('#total_pp').text(total_final)
+        $('#total_fix').val(total_final)
     }
 </script>
 

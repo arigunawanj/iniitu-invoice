@@ -278,26 +278,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Page JS -->
     <script src="{{ asset('isi/assets/js/dashboards-analytics.js') }}"></script>
-    <script>
-        function total() {
-            let charge = $('#charge').val()
-            let total = $('#total_harga').val()
-            // let total_pp = $('#total_pp').val()
-    
-            let sumcharge = parseFloat(total * (parseInt(charge) / 100))
-            $('#chargesum').val(sumcharge)
-            // let hasilPPN = total_harga - hitungPPN
-    
-            // let hitungPPH = parseFloat(total_harga * (pph / 100))
-            // $('#hasilpph').val(hitungPPH)
-            // let hasilPPH = 
-    
-            let total_final = parseInt(parseInt(total) + sumcharge)
-            $('#total_pp').text(total_final)
-            $('#total_fix').val(total_final)
-    
-        }
-    </script>
+   
     
     <script>
         $('#logout').on("click", function() {
