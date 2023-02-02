@@ -32,18 +32,11 @@
                             <td>{{ $item->alamat_customer }}</td>
                             <td>{{ $item->telepon_customer }}</td>
                             <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#editData{{ $item->id }}">
-                                            <i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delData{{ $item->id }}">
-                                            <i class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
-                                </div>
+                                <a class="btn rounded-pill btn-icon btn-outline-info" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#editData{{ $item->id }}">
+                                    <i class="bx bx-edit-alt"></i></a>
+                                <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delData{{ $item->id }}">
+                                    <i class="bx bx-trash "></i></a>
+                            
                             </td>
                         </tr>
 
@@ -78,8 +71,7 @@
                                                             Customer</label>
                                                         <div class="col-sm-10">
                                                             <div class="input-group input-group-merge">
-                                                                <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                                        class="bx bx-buildings"></i></span>
+                                                                <span id="basic-icon-default-company2" class="input-group-text"><i class='bx bx-barcode'></i></span>
                                                                 <input type="text" id="basic-icon-default-company" class="form-control"
                                                                     placeholder="Masukkan Kode Customer..." name="kode_customer" value="{{ $item->kode_customer }}"
                                                                     aria-describedby="basic-icon-default-company2" />
@@ -91,7 +83,7 @@
                                                             Customer</label>
                                                         <div class="col-sm-10">
                                                             <div class="input-group input-group-merge">
-                                                                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                                                <span class="input-group-text"><i class='bx bx-home'></i></span>
                                                                 <input type="text" id="basic-icon-default-email" class="form-control"
                                                                     placeholder="Masukkan Alamat..." name="alamat_customer" value="{{ $item->alamat_customer }}"
                                                                     aria-describedby="basic-icon-default-email2" />
@@ -115,9 +107,9 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                    Close
+                                                    Tutup
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                             </div>
                                         </div>
                                     </form>
@@ -141,9 +133,9 @@
                                             Anda yakin ingin menghapus?
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                    Close
+                                                    Tutup
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                                <button type="submit" class="btn btn-primary">Hapus</button>
                                             </div>
                                         </div>
                                     </form>
@@ -189,8 +181,7 @@
                                         Customer</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                    class="bx bx-buildings"></i></span>
+                                            <span id="basic-icon-default-company2" class="input-group-text"><i class='bx bx-barcode'></i></span>
                                             <input type="text" id="basic-icon-default-company" class="form-control"
                                                 placeholder="Masukkan Kode Customer..." name="kode_customer"
                                                 aria-describedby="basic-icon-default-company2" />
@@ -202,7 +193,7 @@
                                         Customer</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                            <span class="input-group-text"><i class='bx bx-home'></i></span>
                                             <input type="text" id="basic-icon-default-email" class="form-control"
                                                 placeholder="Masukkan Alamat..." name="alamat_customer"
                                                 aria-describedby="basic-icon-default-email2" />
@@ -226,9 +217,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                Close
+                                Tutup
                             </button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </form>

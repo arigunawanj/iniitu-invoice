@@ -26,18 +26,12 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-trash me-1"></i> Delete</a>
-                                        </div>
-                                    </div>
+                                    <a class="btn rounded-pill btn-icon btn-outline-info" href="javascript:void(0);" data-bs-toggle="modal"
+                                            data-bs-target="#editData"><i
+                                                class="bx bx-edit-alt"></i></a>
+                                        <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
+                                            data-bs-target="#delData"><i
+                                                class="bx bx-trash"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -58,69 +52,48 @@
                   <div class="row">
                       <form>
                           <div class="row mb-3">
-                              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
-                                  Customer</label>
+                              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Username</label>
                               <div class="col-sm-10">
                                   <div class="input-group input-group-merge">
                                       <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                               class="bx bx-user"></i></span>
                                       <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                          placeholder="Masukkan Nama..." aria-label="John Doe"
+                                          placeholder="Masukkan username..." aria-label="John Doe"
                                           aria-describedby="basic-icon-default-fullname2" />
                                   </div>
                               </div>
                           </div>
                           <div class="row mb-3">
-                              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kode
-                                  Customer</label>
+                              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Email</label>
                               <div class="col-sm-10">
                                   <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-company2" class="input-group-text"><i
-                                              class="bx bx-buildings"></i></span>
-                                      <input type="text" id="basic-icon-default-company" class="form-control"
-                                          placeholder="Masukkan Kode Customer..." aria-label="ACME Inc."
+                                      <span id="basic-icon-default-company2" class="input-group-text">
+                                        <i class="bx bx-envelope"></i></span>
+                                      <input type="email" id="basic-icon-default-company" class="form-control"
+                                          placeholder="Masukkan Email..." aria-label="ACME Inc."
                                           aria-describedby="basic-icon-default-company2" />
                                   </div>
                               </div>
                           </div>
                           <div class="row mb-3">
-                              <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Alamat
-                                  Customer</label>
+                              <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Password</label>
                               <div class="col-sm-10">
                                   <div class="input-group input-group-merge">
-                                      <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                      <input type="text" id="basic-icon-default-email" class="form-control"
-                                          placeholder="Masukkan Alamat..." aria-label="john.doe"
+                                      <span class="input-group-text"><i class='bx bx-key' ></i></span>
+                                      <input type="password" id="basic-icon-default-email" class="form-control"
+                                          placeholder="Masukkan Password..." aria-label="john.doe"
                                           aria-describedby="basic-icon-default-email2" />
                                   </div>
                               </div>
                           </div>
-                          <div class="row mb-3">
-                              <label class="col-sm-2 form-label" for="basic-icon-default-phone">Telepon
-                                  Customer</label>
-                              <div class="col-sm-10">
-                                  <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                              class="bx bx-phone"></i></span>
-                                      <input type="text" id="basic-icon-default-phone"
-                                          class="form-control phone-mask" placeholder="Masukkan Telepon..."
-                                          aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row justify-content-end">
-                              <div class="col-sm-10">
-                                  <button type="submit" class="btn btn-primary">Send</button>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                      Close
-                  </button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Tutup
+                        </button>
+                        <button type="button" class="btn btn-primary">Simpan</button>
+                    </form>
               </div>
           </div>
       </div>

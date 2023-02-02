@@ -31,20 +31,13 @@
                                     <td>{{ $item->harga }}</td>
                                     <td>{{ $item->harga_dollar }}</td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                    data-bs-target="#editData{{ $item->id }}"><i
-                                                        class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                    data-bs-target="#delData{{ $item->id }}"><i
-                                                        class="bx bx-trash me-1"></i> Delete</a>
-                                            </div>
-                                        </div>
+                                        <a class="btn rounded-pill btn-icon btn-outline-info" href="javascript:void(0);" data-bs-toggle="modal"
+                                            data-bs-target="#editData{{ $item->id }}"><i
+                                                class="bx bx-edit-alt"></i></a>
+                                        <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
+                                            data-bs-target="#delData{{ $item->id }}"><i
+                                                class="bx bx-trash"></i></a>
+                                            
                                     </td>
                                 </tr>
                             </tbody>
@@ -69,8 +62,7 @@
                                                             <div class="col-sm-10">
                                                                 <div class="input-group input-group-merge">
                                                                     <span id="basic-icon-default-fullname2"
-                                                                        class="input-group-text"><i
-                                                                            class="bx bx-user"></i></span>
+                                                                        class="input-group-text"><i class='bx bx-box'></i></span>
                                                                     <input type="text" class="form-control"
                                                                         id="basic-icon-default-fullname"
                                                                         placeholder="Masukkan Nama..." name="nama_barang"
@@ -86,8 +78,7 @@
                                                             <div class="col-sm-10">
                                                                 <div class="input-group input-group-merge">
                                                                     <span id="basic-icon-default-company2"
-                                                                        class="input-group-text"><i
-                                                                            class="bx bx-buildings"></i></span>
+                                                                        class="input-group-text"><i class='bx bx-barcode' ></i></span>
                                                                     <input type="text" id="basic-icon-default-company"
                                                                         class="form-control"
                                                                         placeholder="Masukkan Kode Barang..."
@@ -103,7 +94,7 @@
                                                                 <div class="input-group input-group-merge">
                                                                     <span id="basic-icon-default-phone2"
                                                                         class="input-group-text">
-                                                                        <i class="bx bx-phone"></i></span>
+                                                                        <i class='bx bx-purchase-tag-alt' ></i></span>
                                                                     <input type="text" id="basic-icon-default-phone"
                                                                         class="form-control phone-mask"
                                                                         placeholder="Masukkan Harga..."
@@ -119,7 +110,7 @@
                                                                 <div class="input-group input-group-merge">
                                                                     <span id="basic-icon-default-phone2"
                                                                         class="input-group-text">
-                                                                        <i class="bx bx-phone"></i></span>
+                                                                        <i class='bx bx-dollar'></i></span>
                                                                     <input type="text" id="basic-icon-default-phone"
                                                                         class="form-control phone-mask"
                                                                         placeholder="Masukkan Harga Dollar..."
@@ -134,9 +125,9 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal">
-                                                        Close
+                                                        Tutup
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                                 </div>
                                         </div>
                                         </form>
@@ -163,9 +154,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                            Close
+                                            Tutup
                                         </button>
-                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                        <button type="submit" class="btn btn-primary">Hapus</button>
                                     </div>
                                 </div>
                             </form>
@@ -197,10 +188,9 @@
                                     Barang</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                                class="bx bx-user"></i></span>
+                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class='bx bx-box'></i></span>
                                         <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                            placeholder="Masukkan Nama..." name="nama_barang"
+                                            placeholder="Masukkan Nama Barang..." name="nama_barang"
                                             aria-describedby="basic-icon-default-fullname2" />
                                     </div>
                                 </div>
@@ -210,8 +200,7 @@
                                     Barang</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                class="bx bx-buildings"></i></span>
+                                        <span id="basic-icon-default-company2" class="input-group-text"><i class='bx bx-barcode' ></i></span>
                                         <input type="text" id="basic-icon-default-company" class="form-control"
                                             placeholder="Masukkan Kode Barang..." name="kode_barang"
                                             aria-describedby="basic-icon-default-company2" />
@@ -223,8 +212,8 @@
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text">
-                                            <i class="bx bx-phone"></i></span>
-                                        <input type="text" id="basic-icon-default-phone"
+                                            <i class='bx bx-purchase-tag-alt' ></i></span>
+                                        <input type="number" id="basic-icon-default-phone"
                                             class="form-control phone-mask" placeholder="Masukkan Harga..."
                                             name="harga" aria-describedby="basic-icon-default-phone2" />
                                     </div>
@@ -235,8 +224,8 @@
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text">
-                                            <i class="bx bx-phone"></i></span>
-                                        <input type="text" id="basic-icon-default-phone"
+                                            <i class='bx bx-dollar' ></i></span>
+                                        <input type="number" id="basic-icon-default-phone"
                                             class="form-control phone-mask" placeholder="Masukkan Harga Dollar..."
                                             name="harga_dollar" aria-describedby="basic-icon-default-phone2" />
                                     </div>
@@ -246,9 +235,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                            Close
+                            Tutup
                         </button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
             </div>
             </form>

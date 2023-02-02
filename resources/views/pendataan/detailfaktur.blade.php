@@ -28,24 +28,31 @@
                         @foreach ($detail as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->kode_faktur }}</td>
+                            <td><span class="badge bg-label-warning">{{ $item->kode_faktur }}</span></td>
                             <td>{{ $item->barang->nama_barang }}</td>
                             <td>{{ $item->customer->nama_customer }}</td>
-                            <td>{{ $item->diskon }}</td>
-                            <td>{{ $item->subtotal }}</td>
+                            <td>
+                                @if ($item->diskon <= 10)
+                                    <span class="badge bg-label-info">{{ $item->diskon }} %</span> 
+                                @elseif ($item->diskon <= 20)
+                                    <span class="badge bg-label-success">{{ $item->diskon }} %</span> 
+                                @elseif ($item->diskon <= 30)
+                                    <span class="badge bg-label-warning">{{ $item->diskon }} %</span> 
+                                @elseif ($item->diskon <= 40)
+                                    <span class="badge bg-label-danger">{{ $item->diskon }} %</span> 
+                                @elseif ($item->diskon <= 49)
+                                    <span class="badge bg-label-secondary">{{ $item->diskon }} %</span> 
+                                @else 
+                                    <span class="badge bg-label-dark">{{ $item->diskon }} %</span> 
+                                @endif
+                            </td>
+                            <td>Rp {{ number_format("$item->subtotal",0,",",".") }}</td>
                             <td>{{ $item->qty }}</td>
                             <td>
-                                <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"
-                                    ><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                    data-bs-target="#delData{{ $item->id }}"><i class="bx bx-trash me-1"></i> Delete</a>
-                                </div>
-                                </div>
+                               
+                                    <a href="" class="btn rounded-pill btn-icon btn-outline-danger" data-bs-toggle="modal"
+                                    data-bs-target="#delData{{ $item->id }}"><i class="bx bx-trash"></i></a>
+                                
                             </td>
                         </tr>
 
@@ -54,19 +61,19 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalCenterTitle">Hapus Data Detail Faktur</h5>
+                                        <h5 class="modal-title" id="modalCenterTitle">Hapus Data Detail Faktur Lokal</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="{{ route('detail.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <div class="modal-body">
-                                            Anda yakin ingin menghapus?
+                                            <p>Anda yakin ingin menghapus Kode Faktur <span class="badge bg-label-danger">{{ $item->kode_faktur }}</span> ?</p>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                    Close
+                                                    Tutup
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
                                             </div>
                                         </div>
                                     </form>
@@ -86,7 +93,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Tambah Detail Faktur</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Tambah Detail Faktur Lokal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('detail.store') }}" method="POST">
@@ -98,10 +105,11 @@
                                         Faktur</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                    class="bx bx-buildings"></i></span>
+                                            <span id="basic-icon-default-company2" class="input-group-text">
+                                                <i class='bx bx-barcode'></i>
+                                            </span>
                                             <input type="text" id="basic-icon-default-company" class="form-control"
-                                                placeholder="Masukkan Kode Customer..." name="kode_faktur"
+                                                placeholder="Masukkan Kode Faktur..." name="kode_faktur"
                                                 aria-describedby="basic-icon-default-company2" />
                                         </div>
                                     </div>
@@ -127,8 +135,9 @@
                                         Barang</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                                    class="bx bx-user"></i></span>
+                                            <span id="basic-icon-default-fullname2" class="input-group-text">
+                                                <i class='bx bxs-package' ></i>
+                                            </span>
                                             <select name="barang_id" class="form-select" id="nama_barang" onchange="harga(value)">
                                                 <option selected value="">Pilih Barang..</option>
                                                 @foreach ($barang as $item)
@@ -142,10 +151,12 @@
                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Harga Barang</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                            <span class="input-group-text">
+                                                <i class='bx bx-purchase-tag'></i>
+                                            </span>
                                             <input type="text" id="harga_barang" class="form-control"
                                                 placeholder="Harga Barang..." onkeyup="harga(value)"
-                                                aria-describedby="basic-icon-default-email2" />
+                                                aria-describedby="basic-icon-default-email2" disabled/>
                                         </div>
                                     </div>
                                 </div>
@@ -153,8 +164,9 @@
                                     <label class="col-sm-2 form-label" for="basic-icon-default-phone">QTY</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                    class="bx bx-phone"></i></span>
+                                            <span id="basic-icon-default-phone2" class="input-group-text">
+                                                <i class='bx bx-box'></i>
+                                            </span>
                                             <input type="text" id="qty" onkeyup="hasil()"
                                                 class="form-control phone-mask" placeholder="Masukkan Kuantitas..."
                                                 name="qty" aria-describedby="basic-icon-default-phone2" />
@@ -165,11 +177,12 @@
                                     <label class="col-sm-2 form-label" for="basic-icon-default-phone">Total</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                    class="bx bx-phone"></i></span>
+                                            <span id="basic-icon-default-phone2" class="input-group-text">
+                                                <i class='bx bx-coin'></i>
+                                            </span>
                                             <input type="text" id="total"
                                                 class="form-control phone-mask" placeholder="Total Harga..."
-                                                aria-describedby="basic-icon-default-phone2" />
+                                                aria-describedby="basic-icon-default-phone2" disabled/>
                                         </div>
                                     </div>
                                 </div>
@@ -177,8 +190,9 @@
                                     <label class="col-sm-2 form-label" for="basic-icon-default-phone">Diskon</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                    class="bx bx-phone"></i></span>
+                                            <span id="basic-icon-default-phone2" class="input-group-text">
+                                                <i class='bx bxs-discount'></i>
+                                            </span>
                                             <input type="text" id="diskon" onkeyup="hasil()"
                                                 class="form-control phone-mask" placeholder="Masukkan Diskon..."
                                                 name="diskon" aria-describedby="basic-icon-default-phone2" />
@@ -189,8 +203,9 @@
                                     <label class="col-sm-2 form-label" for="basic-icon-default-phone">Subtotal</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                    class="bx bx-phone"></i></span>
+                                            <span id="basic-icon-default-phone2" class="input-group-text">
+                                                <i class='bx bx-money'></i>
+                                            </span>
                                             <input type="text" id="subtotal" onkeyup="hasil()"
                                                 class="form-control phone-mask" placeholder="Subtotal..."
                                                 aria-describedby="basic-icon-default-phone2" />
@@ -202,9 +217,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                Close
+                                Tutup
                             </button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </form>

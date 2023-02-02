@@ -68,13 +68,13 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('home') ? 'active' : '' }}">
                         <a href="/home" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('user') ? 'active' : '' }}">
                         <a href="/user" class="menu-link">
                           <i class='menu-icon bx bx-user'></i>
                             <div data-i18n="Analytics">Data Pengguna</div>
@@ -85,21 +85,21 @@
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Pendataan</span>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('customer') ? 'active' : '' }}">
                         <a href="/customer" class="menu-link">
                             <i class='menu-icon bx bxs-user-rectangle' ></i>
                             <div data-i18n="Analytics">Data Customer</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('barang') ? 'active' : '' }}">
                         <a href="/barang" class="menu-link">
                             <i class='menu-icon bx bxs-package'></i>
                             <div data-i18n="Analytics">Data Barang</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('report') ? 'active' : '' }}">
                         <a href="" class="menu-link">
-                            <i class='menu-icon bx bx-note'></i>
+                            <i class='menu-icon bx bxs-report'></i>
                             <div data-i18n="Analytics">Laporan Penjualan</div>
                         </a>
                     </li>
@@ -110,16 +110,16 @@
 
                     <li class="menu-item">
                         <a href="javascript:void(0)" class="menu-link menu-toggle">
-                            <i class='menu-icon bx bxs-receipt'></i>
+                            <i class='menu-icon bx bx-receipt'></i>
                             <div data-i18n="Extended UI">Faktur Lokal</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item">
+                            <li class="menu-item {{ request()->is('detail') ? 'active' : '' }}">
                                 <a href="/detail" class="menu-link">
                                     <div data-i18n="Perfect Scrollbar">Tambah Data Faktur</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item {{ request()->is('faktur') ? 'active' : '' }}">
                                 <a href="/faktur" class="menu-link">
                                     <div data-i18n="Text Divider">Faktur</div>
                                 </a>
@@ -136,12 +136,12 @@
                             <div data-i18n="Extended UI">Faktur Inter</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item">
+                            <li class="menu-item {{ request()->is('invoicedetail') ? 'active' : '' }}">
                                 <a href="/invoicedetail" class="menu-link">
                                     <div data-i18n="Perfect Scrollbar">Tambah Data Faktur</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item {{ request()->is('/') ? 'active' : '' }}">
                                 <a href="" class="menu-link">
                                     <div data-i18n="Text Divider">Faktur</div>
                                 </a>
