@@ -10,6 +10,7 @@ use App\Http\Controllers\FakturController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\InvoiceDetailController;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('faktur', FakturController::class);
     Route::resource('penjualan', PenjualanController::class);
     Route::resource('user', UserController::class);
+    Route::resource('profil', ProfilController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('getharga', [DetailController::class, 'getHarga']);
