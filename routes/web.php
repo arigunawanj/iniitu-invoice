@@ -39,7 +39,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('getharga', [DetailController::class, 'getHarga']);
     Route::get('getbarang/{id}', [DetailController::class, 'getBarang']);
-    
+    Route::get('getname/{id}', [FakturController::class, 'getNama']);
+    Route::get('getbfaktur/{id}', [FakturController::class, 'getBarang']);
 });
 
 Auth::routes();

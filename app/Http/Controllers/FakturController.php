@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Detail;
 use App\Models\Faktur;
 use App\Models\Profil;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -18,8 +21,12 @@ class FakturController extends Controller
     public function index()
     {
         $faktur = Faktur::all();
+        $customer = Customer::all();
+        $barang = Barang::all();
+        $detail = Detail::all();
+        $dfaktur = $detail->unique('kode_faktur');
         // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.faktur', compact('faktur'));
+        return view('pendataan.faktur', compact('faktur', 'customer', 'barang', 'detail', 'dfaktur'));
     }
 
     /**
@@ -104,4 +111,39 @@ class FakturController extends Controller
         $faktur->delete();
         return redirect('faktur');
     }
+
+    public function getNama($id)
+    {
+        /*
+            * Tabel Detail faktur akan digabungkan dengan Tabel Customer dimana customer.id harus sama
+            * Dengan kondisi kode_faktur sama dengan data kode_faktur($id) yang diambil
+            * Setelah itu data diambil
+        */
+        $data = Detail::join('customers', 'customers.id', 'details.customer_id')->where('details.kode_faktur', $id)->get();
+      
+        // Data akan direspon ke dalam bentuk JSON dengan membawa data $data
+        return response()->json($data);
+    }
+
+    public function getBarang($id)
+    {
+        /*
+            * Tabel Detail faktur akan digabungkan dengan Tabel Barang dimana barang.id harus sama
+            * Dengan kondisi kode_faktur sama dengan data kode_faktur($id) yang diambil
+            * Setelah itu data diambil
+        */
+        $data = Detail::join('barangs', 'barangs.id', 'details.barang_id')->where('details.kode_faktur', $id)->get();
+      
+        // Sebagai Variabel penampung
+        $li = '';
+
+        // Setelah itu data akan diulang
+        foreach ($data as $item) {
+            $li .= $item->nama_barang. ', ';
+        }
+      
+        // Data akan ditampilkan dalam bentuk respon dan bentuk json. Data yang ditampilkan berupa Array
+        return response()->json([$li]);
+    }
+
 }

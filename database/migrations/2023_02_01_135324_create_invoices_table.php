@@ -19,8 +19,9 @@ return new class extends Migration
             $table->date('invoice_date');
             $table->foreignId('customer_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('description')->nullable();
-            $table->integer('total_finale');
-            $table->integer('charge');
+            $table->float('total');
+            $table->float('charge');
+            $table->float('total_finale');
             $table->timestamps();
         });
     }

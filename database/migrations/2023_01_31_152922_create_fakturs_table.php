@@ -19,8 +19,9 @@ return new class extends Migration
             $table->date('tanggal_faktur');
             $table->foreignId('customer_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('ket_faktur')->nullable();
-            $table->integer('total_final');
+            $table->integer('total');
             $table->integer('charge');
+            $table->integer('total_final');
             $table->timestamps();
         });
     }

@@ -63,53 +63,82 @@
                     <div class="row">
                         <form>
                             <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kode
+                                    Faktur</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                class="bx bx-buildings"></i></span>
+                                        <select name="kode_faktur" onchange="nama(value)" id="" class="form-select">
+                                            <option selected value="">Pilih Kode Faktur...</option>
+                                            @foreach ($dfaktur as $item)
+                                                <option value="{{ $item->kode_faktur }}">{{ $item->kode_faktur }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
                                     Customer</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                 class="bx bx-user"></i></span>
-                                        <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                            placeholder="Masukkan Nama..." aria-label="John Doe"
+                                        <input type="text" class="form-control" id="nama_cust" onkeyup="nama(value)"
+                                            placeholder="Ditujukan Kepada..." disabled
                                             aria-describedby="basic-icon-default-fullname2" />
+                                        <input type="hidden" name="customer_id" id="cust_id">
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kode
-                                    Customer</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                class="bx bx-buildings"></i></span>
-                                        <input type="text" id="basic-icon-default-company" class="form-control"
-                                            placeholder="Masukkan Kode Customer..." aria-label="ACME Inc."
-                                            aria-describedby="basic-icon-default-company2" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Alamat
-                                    Customer</label>
+                                <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Tanggal Faktur</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                        <input type="text" id="basic-icon-default-email" class="form-control"
-                                            placeholder="Masukkan Alamat..." aria-label="john.doe"
+                                        <input type="date" id="basic-icon-default-email" class="form-control"
+                                            placeholder="Masukkan Tanggal..." name="tanggal_faktur"
                                             aria-describedby="basic-icon-default-email2" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Telepon
-                                    Customer</label>
+                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Total</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text"><i
                                                 class="bx bx-phone"></i></span>
-                                        <input type="text" id="basic-icon-default-phone"
-                                            class="form-control phone-mask" placeholder="Masukkan Telepon..."
+                                        <input type="text" id="total_harga" name="total" onkeyup="nama(value)"
+                                            class="form-control phone-mask" placeholder="Total Harga..."
                                             aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Admin Charge</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                                class="bx bx-phone"></i></span>
+                                        <input type="text" id="charge" onkeyup="total()"
+                                            class="form-control phone-mask" placeholder="Masukkan Charge..."
+                                            aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+                                        <input type="hidden" name="charge" id="chargesum">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Total Final</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                                class="bx bx-phone"></i></span>
+                                        <input type="text" id="total_pp" disabled
+                                            class="form-control phone-mask" placeholder="Total Final..."
+                                            aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+                                        <input type="hidden" name="total_final" id="total_fix">
                                     </div>
                                 </div>
                             </div>
@@ -132,4 +161,52 @@
     </div>
     {{-- MODAL CLOSE --}}
 </div>
+
+
+<script>
+    function nama(id) {
+        $.ajax({
+            type: "get",
+            url: `/getname/${id}`,
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                $(`#nama_cust`).children().remove()
+                response.map((value) => {
+                    $(`#cust_id`).val(value.customer_id)
+                    $(`#nama_cust`).val(value.nama_customer)
+                });
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: `/getname/${id}`,
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                let hasil = 0;
+                response.map((value) => {
+                    let total = value.subtotal
+                    if (total != null && total != "") {
+                        hasil += parseInt(total);
+                    }
+                    $(`#total_harga`).val(hasil)
+                });
+            }
+        });
+
+        // $.ajax({
+        //     type: "get",
+        //     url: `/getbfaktur/${id}`,
+        //     dataType: "json",
+        //     success: function (response) {
+        //         response.map((value) => {
+        //             $('#barang_faktur').text(value)
+        //         })
+        //     }
+        // });
+    }
+</script>
+
 @endsection
