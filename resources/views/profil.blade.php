@@ -30,7 +30,7 @@
                                         <p class="text-muted mb-5"><i class='bx bx-envelope' ></i> {{ $item->email }}</p>
                                     </div>
                                     <div class="button-wrapper">
-                                        <p class="text-muted mb-5"><i class='bx bx-phone' ></i> {{ $item->tanggal_lahir }}</p>
+                                        <p class="text-muted mb-5"><i class='bx bxs-face' ></i> {{ $item->tanggal_lahir }}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -51,7 +51,7 @@
                                             <p class="text-muted mb-5"><i class='bx bx-envelope' ></i> -</p>
                                         </div>
                                         <div class="button-wrapper">
-                                            <p class="text-muted mb-5"><i class='bx bx-phone' ></i> -</p>
+                                            <p class="text-muted mb-5"><i class='bx bxs-face' ></i> -</p>
                                         </div>
                                     </div>
 
