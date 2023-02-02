@@ -12,27 +12,50 @@
                     <div class="card border border-warning mb-4">
                         <h5 class="card-header">Detail Profil</h5>
                         <!-- Account -->
-                        @foreach ($profil as $item)
-                        <div class="card-body text-center">
-                            <div class="d-flex align-items-start align-items-sm-center">
-                                <div class="button-wrapper">
-                                    <h3 class="text-muted">{{ $item->nama }}</h3>
+                        @if (DB::table('profils')->where('user_id', Auth::user()->id)->exists())
+                            @foreach ($profil as $item)
+                            <div class="card-body text-center">
+                                <div class="d-flex align-items-start align-items-sm-center">
+                                    <div class="button-wrapper">
+                                            <h3 class="text-muted">{{ $item->nama }}</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                <img src="{{ asset('storage/'. $item->foto) }}" alt="user-avatar"
-                                    class="d-block rounded" height="100" width="100" id="uploadedAvatar" style="object-fit: cover" />
-                                <div class="button-wrapper">
-                                    <p class="text-muted mb-5"><i class='bx bx-buildings'></i> {{ $item->alamat }}</p>
+                                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                    <img src="{{ asset('storage/'. $item->foto) }}" alt="user-avatar"
+                                        class="d-block rounded" height="100" width="100" id="uploadedAvatar" style="object-fit: cover" />
+                                    <div class="button-wrapper">
+                                        <p class="text-muted mb-5"><i class='bx bx-buildings'></i> {{ $item->alamat }}</p>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <p class="text-muted mb-5"><i class='bx bx-envelope' ></i> {{ $item->email }}</p>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <p class="text-muted mb-5"><i class='bx bx-phone' ></i> {{ $item->tanggal_lahir }}</p>
+                                    </div>
                                 </div>
-                                <div class="button-wrapper">
-                                    <p class="text-muted mb-5"><i class='bx bx-envelope' ></i> {{ $item->email }}</p>
-                                </div>
-                                <div class="button-wrapper">
-                                    <p class="text-muted mb-5"><i class='bx bx-phone' ></i> {{ $item->tanggal_lahir }}</p>
-                                </div>
-                            </div>
                             @endforeach
+                        @else
+                                <div class="card-body text-center">
+                                    <div class="d-flex align-items-start align-items-sm-center">
+                                        <div class="button-wrapper">
+                                                <h3 class="text-muted">Silahkan Tambah Profil</h3>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                        <img src="{{ asset('isi/assets/img/avatars/1.png') }}" alt="user-avatar"
+                                            class="d-block rounded" height="100" width="100" id="uploadedAvatar" style="object-fit: cover" />
+                                        <div class="button-wrapper">
+                                            <p class="text-muted mb-5"><i class='bx bx-buildings'></i> -</p>
+                                        </div>
+                                        <div class="button-wrapper">
+                                            <p class="text-muted mb-5"><i class='bx bx-envelope' ></i> -</p>
+                                        </div>
+                                        <div class="button-wrapper">
+                                            <p class="text-muted mb-5"><i class='bx bx-phone' ></i> -</p>
+                                        </div>
+                                    </div>
+
+                        @endif
                                 <div class="d-flex align-items-start align-items-sm-center gap-4">
                                     @if (DB::table('profils')->where('user_id', Auth::user()->id)->exists())
                                         <div class="button-wrapper">
