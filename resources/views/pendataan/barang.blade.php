@@ -29,7 +29,7 @@
                                     <td><span class="badge rounded-pill bg-warning">{{ $item->kode_barang }}</span></td>
                                     <td>{{ $item->nama_barang }}</td>
                                     <td>Rp {{ number_format("$item->harga",0,",",".") }}</td>
-                                    <td>{{ $item->harga_dollar }}</td>
+                                    <td>$ {{ $item->harga_dollar }}</td>
                                     <td>
                                         <a class="btn rounded-pill btn-icon btn-outline-info" href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#editData{{ $item->id }}"><i

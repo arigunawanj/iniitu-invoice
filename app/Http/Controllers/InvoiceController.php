@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\Invoice;
+use App\Models\Customer;
+use App\Models\Penjualan;
 use Illuminate\Http\Request;
+use App\Models\InvoiceDetail;
+use Illuminate\Support\Facades\Validator;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +19,13 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $invoice = Invoice::all();
+        $customer = Customer::all();
+        $barang = Barang::all();
+        $dinvoice = InvoiceDetail::all();
+        $dinv = $dinvoice->unique('invoice_code');
+        // $profil = Profil::where('user_id', Auth::user()->id)->get();
+        return view('pendataan.invoice', compact('invoice', 'customer', 'barang', 'dinvoice', 'dinv'));
     }
 
     /**
@@ -35,7 +46,31 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'invoice_code' => 'required|unique:invoices',
+            'invoice_date' => 'required',
+            'customer_id' => 'required',
+            'description' => 'required',
+            'total' => 'required',
+            'charge' => 'required',
+            'total_finale' => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect('invoice')->with('error', 'Gagal Menyimpan Data');
+        } else {
+            $data = $request->all();
+            Invoice::create($data);
+            Penjualan::create([
+                'kode' => $request->invoice_code,
+                'tanggal' => $request->invoice_date,
+                'customer_id' => $request->customer_id,
+                'jumlah' => $request->total_finale,
+                'keterangan' => $request->description,
+                'jenis' => 1,
+            ]);
+            return redirect('invoice')->with('success', 'Berhasil Menyimpan Data');
+        }
     }
 
     /**
@@ -81,5 +116,18 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         //
+    }
+
+    public function invName($id)
+    {
+        /*
+            * Tabel Detail faktur akan digabungkan dengan Tabel Customer dimana customer.id harus sama
+            * Dengan kondisi kode_faktur sama dengan data kode_faktur($id) yang diambil
+            * Setelah itu data diambil
+        */
+        $data = InvoiceDetail::join('customers', 'customers.id', 'invoice_details.customer_id')->where('invoice_details.invoice_code', $id)->get();
+      
+        // Data akan direspon ke dalam bentuk JSON dengan membawa data $data
+        return response()->json($data);
     }
 }

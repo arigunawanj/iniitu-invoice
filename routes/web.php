@@ -7,10 +7,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\FakturController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\InvoiceDetailController;
-use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('barang', BarangController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('detail', DetailController::class);
-    Route::resource('invoicedetail', InvoiceDetailController::class);
     Route::resource('faktur', FakturController::class);
+    Route::resource('invoicedetail', InvoiceDetailController::class);
+    Route::resource('invoice', InvoiceController::class);
     Route::resource('penjualan', PenjualanController::class);
     Route::resource('user', UserController::class);
     Route::resource('profil', ProfilController::class);
@@ -42,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('getharga', [DetailController::class, 'getHarga']);
     Route::get('getbarang/{id}', [DetailController::class, 'getBarang']);
     Route::get('getname/{id}', [FakturController::class, 'getNama']);
+    Route::get('invname/{id}', [InvoiceController::class, 'invName']);
     Route::get('getbfaktur/{id}', [FakturController::class, 'getBarang']);
 });
 

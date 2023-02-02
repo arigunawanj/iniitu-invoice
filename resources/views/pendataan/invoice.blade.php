@@ -1,11 +1,11 @@
 @extends('layouts.template')
 
-@section('title', 'Data Faktur')
+@section('title', 'Data Faktur Inter')
 @section('content')
 <div class="content-wrapper">
      <!-- Content -->
      <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendataan /</span> Data Faktur</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendataan /</span> Data Faktur Inter</h4>
             <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahData">Tambah Data</a>
               <!-- Basic Bootstrap Table -->
               <div class="card">
@@ -26,16 +26,16 @@
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($faktur as $item)
+                        @foreach ($invoice as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->kode_faktur }}</td>
-                            <td>{{ $item->tanggal_faktur }}</td>
+                            <td>{{ $item->invoice_code }}</td>
+                            <td>{{ $item->invoice_date }}</td>
                             <td>{{ $item->customer->nama_customer }}</td>
-                            <td>{{ $item->ket_faktur }}</td>
-                            <td>{{ $item->total }}</td>
-                            <td>{{ $item->charge }}</td>
-                            <td>{{ $item->total_final }}</td>
+                            <td>{{ $item->description }}</td>
+                            <td>$ {{ $item->total }}</td>
+                            <td>$ {{ $item->charge }}</td>
+                            <td>$ {{ $item->total_finale }}</td>
                             <td>
                                 <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
                                 data-bs-target="#delData{{ $item->id }}"><i class="bx bx-trash"></i></a>
@@ -47,11 +47,11 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalCenterTitle">Hapus Data Faktur</h5>
+                                        <h5 class="modal-title" id="modalCenterTitle">Hapus Data Faktur Inter</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ route('faktur.destroy', $item->id) }}" method="POST">
+                                    <form action="{{ route('invoice.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <div class="modal-body">
@@ -82,12 +82,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Tambah Data Faktur</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Tambah Data Faktur Inter</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form action="{{ route('faktur.store') }}" method="POST">
+                        <form action="{{ route('invoice.store') }}" method="POST">
                             @csrf
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kode
@@ -96,10 +96,10 @@
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-company2" class="input-group-text"><i
                                                 class="bx bx-buildings"></i></span>
-                                        <select name="kode_faktur" onchange="nama(value)" id="" class="form-select">
+                                        <select name="invoice_code" onchange="nama(value)" id="" class="form-select">
                                             <option selected value="">Pilih Kode Faktur...</option>
-                                            @foreach ($dfaktur as $item)
-                                                <option value="{{ $item->kode_faktur }}">{{ $item->kode_faktur }}
+                                            @foreach ($dinv as $item)
+                                                <option value="{{ $item->invoice_code }}">{{ $item->invoice_code }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -126,7 +126,7 @@
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="bx bx-envelope"></i></span>
                                         <input type="date" id="basic-icon-default-email" class="form-control"
-                                            placeholder="Masukkan Tanggal..." name="tanggal_faktur"
+                                            placeholder="Masukkan Tanggal..." name="invoice_date"
                                             aria-describedby="basic-icon-default-email2" />
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
                                         <input type="text" id="total_pp" disabled
                                             class="form-control phone-mask" placeholder="Total Final..."
                                             />
-                                        <input type="hidden" name="total_final" id="total_fix">
+                                        <input type="hidden" name="total_finale" id="total_fix">
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text"><i
                                                 class="bx bx-phone"></i></span>
-                                        <input type="text" name="ket_faktur" class="form-control phone-mask" placeholder="Tuliskan Keterangan..."/>
+                                        <input type="text" name="description" class="form-control phone-mask" placeholder="Tuliskan Keterangan..."/>
                                     </div>
                                 </div>
                             </div>
@@ -195,10 +195,10 @@
             let admin = $('#charge').val()
             let total_harga = $('#total_harga').val()
     
-            let hasilCharge = parseFloat(total_harga * (parseInt(admin) / 100))
+            let hasilCharge = parseFloat(total_harga * (parseFloat(admin) / 100))
             $('#chargesum').val(hasilCharge)
     
-            let total_final = parseInt(parseInt(total_harga) + hasilCharge)
+            let total_final = parseFloat(parseFloat(total_harga) + hasilCharge)
             $('#total_pp').val(total_final)
             $('#total_fix').val(total_final)
         }
@@ -207,7 +207,7 @@
         function nama(id) {
             $.ajax({
                 type: "get",
-                url: `/getname/${id}`,
+                url: `/invname/${id}`,
                 dataType: "json",
                 success: function(response) {
                     console.log(response);
@@ -221,7 +221,7 @@
     
             $.ajax({
                 type: "get",
-                url: `/getname/${id}`,
+                url: `/invname/${id}`,
                 dataType: "json",
                 success: function(response) {
                     console.log(response);
@@ -239,7 +239,4 @@
     </script>
    
 </div>
-
-
-
 @endsection
