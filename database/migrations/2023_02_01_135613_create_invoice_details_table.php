@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('barang_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('customer_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('discount');
-            $table->integer('subtotal');
+            $table->float('subtotal');
             $table->integer('qty');
             $table->timestamps();
         });
