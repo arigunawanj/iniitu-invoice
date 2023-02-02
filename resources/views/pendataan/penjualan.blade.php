@@ -36,7 +36,11 @@
                                 @else
                                 <td>$ {{ number_format("$item->jumlah",2,",",".") }}</td>
                                 @endif
-                                <td>{{ $item->status }}</td>
+                                @if ($item->status == 'Belum Lunas')
+                                <td><a href="/status/{{ $item->id }}"><span class="badge bg-label-danger">{{ $item->status }}</span></a></td>
+                                @else
+                                <td><span class="badge bg-label-primary">{{ $item->status }}</span></td>
+                                @endif
                                 <td>{{ $item->keterangan }}</td>
                                 @if ($item->jenis == 0)
                                 <td><span class="badge bg-label-success">Lokal</span> </td>
@@ -44,6 +48,9 @@
                                 <td><span class="badge bg-label-info">Inter</span> </td>
                                 @endif
                                 <td>
+                                    @if ($item->status == 'Lunas')
+                                    <a class="btn rounded-pill btn-icon btn-outline-info" href="/status/{{ $item->id }}" ><i class="bx bx-trash"></i></a>
+                                    @endif
                                         <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
                                             data-bs-target="#delData{{ $item->id }}"><i
                                                 class="bx bx-trash"></i></a>
