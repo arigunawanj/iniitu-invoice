@@ -16,7 +16,7 @@ class PenjualanController extends Controller
     {
         $penjualan = Penjualan::all();
         // $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('penjualan');
+        return view('pendataan.penjualan', compact('penjualan'));
     }
 
     /**

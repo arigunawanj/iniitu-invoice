@@ -97,8 +97,8 @@
                             <div data-i18n="Analytics">Data Barang</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->is('report') ? 'active' : '' }}">
-                        <a href="" class="menu-link">
+                    <li class="menu-item {{ request()->is('penjualan') ? 'active' : '' }}">
+                        <a href="/penjualan" class="menu-link">
                             <i class='menu-icon bx bxs-report'></i>
                             <div data-i18n="Analytics">Laporan Penjualan</div>
                         </a>
