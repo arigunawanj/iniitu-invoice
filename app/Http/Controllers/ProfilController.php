@@ -20,7 +20,9 @@ class ProfilController extends Controller
     {
         $user = User::all();
         $profil = DB::table('users')->join('profils', 'profils.user_id' , 'users.id')->where('user_id', Auth::user()->id)->get();
-        $data = Profil::all();
+        $data = Profil::where('user_id', Auth::user()->id)->get();
+        // $profil = Profil::where('user_id', Auth::user()->id)->get();
+
         return view('profil', compact('profil', 'user', 'data'));
     }
 

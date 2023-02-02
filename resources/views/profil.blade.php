@@ -60,7 +60,7 @@
                                     @if (DB::table('profils')->where('user_id', Auth::user()->id)->exists())
                                         <div class="button-wrapper">
                                             <a class="btn btn-outline-warning mt-3" data-bs-toggle="modal"
-                                            data-bs-target="#editProfil{{ Auth::user()->id }}"><i class='bx bxs-user-plus' ></i> Edit Profil</a>
+                                            data-bs-target="#editProfil"><i class='bx bxs-user-plus' ></i> Edit Profil</a>
                                         </div>
                                     @else
                                         <div class="button-wrapper">
@@ -81,8 +81,8 @@
         </div>
 
         
-    @foreach ($profil as $item)
-    <div class="modal fade" id="editProfil{{ Auth::user()->id }}" tabindex="-1" aria-hidden="true">
+    @foreach ($data as $item)
+    <div class="modal fade" id="editProfil" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -91,7 +91,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <form action="{{ route('profil.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('profil.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                           @csrf
                           @method('PUT')
                             <div class="row mb-3">
