@@ -144,10 +144,17 @@ class InvoiceController extends Controller
         ->where('invoices.invoice_code', $id)->get();
 
         $kode = $data->unique('invoice_code');
+
+        foreach ($kode as $key) {
+            $total = $key->total_finale;
+        }
+
+        $dp = $total * (50/100);
+
         $profil = Profil::where('user_id', Auth::user()->id)->get();
 
         // PDF akan ditampilkan dengan membawa data yang sudah dideklarasikan
-        $pdf = Pdf::loadView('print.printinter', ['data' => $data, 'kode' => $kode, 'profil' => $profil]);
+        $pdf = Pdf::loadView('print.printinter', ['data' => $data, 'kode' => $kode, 'profil' => $profil, 'dp' => $dp]);
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Faktur Inter - '. Carbon::now(). '.pdf');

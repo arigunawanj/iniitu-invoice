@@ -67,6 +67,15 @@
             border-radius: 5px;
         }
 
+        .right {
+            position: relative;
+        }
+
+        .right .block {
+            position: absolute;
+            right: -191px;
+        }
+
         td {
             font-family: 'OpenS-Regular';  
         }
@@ -203,24 +212,28 @@
         </div>
         <div class="col sebelahkanan" style="margin-top:-20px">
             <h1 class="font">INVOICE</h1>
-            <p class="sub">IICO 0123 - 00728</p>
+            @foreach ($kode as $item)
+            <p class="sub">IICO {{ $item->invoice_code }}</p>
             <br>
-            <p class="sub2" style="margin-top:-14px">Issued : 16/11/1996</p>
+            <p class="sub2" style="margin-top:-14px">Issued : {{ $item->invoice_date }}</p>
+            @endforeach
             <p class="sub2">Due : On Receipt</p>
         </div>
     </div>
     <div class="row">
         <div class="col left" style="margin-top: 5px; margin-left:28px;">
-            <p class="bill">Bill To : </p>
-            <p class="bill2" style="margin-top: -18px; margin-bottom:18px; color:black; line-height:15px">Ari Gunawan Jatmiko</p>
-            <p class="bill2" style="margin-top: -19px; color:black; line-height:13px">Jalan Moch Juki 33 Kec.Sukun Kel.Mulyorejo Kota Malang</p>
-            <p class="bill2" style="margin-top: -17px; color:black; line-height:16px">085785196574</p>
+            <p class="bill2">Bill To : </p>
+            @foreach ($kode as $item)
+            <p class="bill" style="margin-top: -18px; margin-bottom:18px; color:black; line-height:15px">{{ $item->nama_customer }}</p>
+            <p class="bill" style="margin-top: -19px; color:black; line-height:13px">{{ $item->alamat_customer }}</p>
+            <p class="bill" style="margin-top: -17px; color:black; line-height:16px">{{ $item->telepon_customer }}</p>
+            @endforeach
         </div>
         <div class="col kanan">
-            <p class="pay" style="margin-top:18px;">Payable to :</p>
-            <p class="sub3" style="margin-top:-17px;">BCA - Ari Gunawan Jatmiko</p>
-            <p class="pay" style="margin-top:-13px;">Account Number :</p>
-            <p class="sub3" style="margin-top:-17px;">06206148403</p>
+            <p class="sub3" style="margin-top:18px;">Payable to :</p>
+            <p class="pay" style="margin-top:-17px;">BCA - Ari Gunawan Jatmiko</p>
+            <p class="sub3" style="margin-top:-13px;">Account Number :</p>
+            <p class="pay" style="margin-top:-17px;">06206148403</p>
         </div>
     </div>
     <div class="row">
@@ -234,6 +247,27 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($data as $item)
+                    
+                <tr>
+                    <td style="text-align: left; padding-left:10px;">{{ $item->nama_barang }}</td>
+                    <td>{{ $item->qty }}</td>
+                    <td>$ {{ $item->harga_dollar }}</td>
+                    <td>$ {{ $item->subtotal }}</td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
+                    <td>2</td>
+                    <td>Rp 10.000</td>
+                    <td>Rp 20.000</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
+                    <td>2</td>
+                    <td>Rp 10.000</td>
+                    <td>Rp 20.000</td>
+                </tr>
                 <tr>
                     <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
                     <td>2</td>
@@ -262,14 +296,17 @@
         </table>
     </div>
     <div class="row">
-        <div class="col sebelahkanan" style="margin-left:52%;">
+        <div class="col right" style="margin-left:40%;">
+            
             <p style="display:inline">
-                <span class="badge-red">DP MINIM 50%</span>
+                <span class="badge-red">DP MINIM 50% $ {{ $dp }}</span>
                 
             </p>
+            @foreach ($kode as $item)
             <p style="display:inline">
-                <span class="block">GRAND TOTAL 552.2K</span>
+                <span class="block">GRAND TOTAL $ {{ $item->total_finale }}</span>
             </p>
+            @endforeach
         </div>
     </div>
     <div class="row" style="height:auto;">
@@ -277,10 +314,10 @@
             <br> dalam berita transfer saat melakukan payment
         </p>
     </div>
-    <div class="row" style="">
+    <div class="row" style="margin-top: -25px">
         <p class="badge-outline">Pengerjaan 8-15 hari kerja (bisa lebih lama jika orderan > 100 pcs)</p>
     </div>
-    <footer>
+    <footer style="margin-top: -25px">
         <p>iniitu • +62 89 628 781 916 • iniitumailnya@gmail.com • LINE @zye3506l </p>
     </footer>
 </body>
