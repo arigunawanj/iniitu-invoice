@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{{ asset('isi/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('isi/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 
     <!-- Page CSS -->
@@ -54,7 +55,7 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
+                    <a href="/home" class="app-brand-link">
                         <img src="{{ asset('isi/assets/img/icons/iniitu.png') }}" width="15px" alt="logo" class="mb-2" srcset="">
                         <span class="app-brand-text demo menu-text fw-bolder ms-2">ini itu</span>
                     </a>
@@ -334,10 +335,21 @@
     <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="http://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <!-- Page JS -->
     <script src="{{ asset('isi/assets/js/dashboards-analytics.js') }}"></script>
    
-    
+    <script>
+       $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+    } );
+ 
+    table.buttons().container()
+        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+} );
+    </script>
     <script>
         $('#logout').on("click", function() {
             swal.fire({

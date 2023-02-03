@@ -10,7 +10,7 @@
             <div class="card">
                 <h5 class="card-header">Laporan Penjualan</h5>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-striped" id="example">
                         <thead>
                             <tr>
                                 <th>No</th>

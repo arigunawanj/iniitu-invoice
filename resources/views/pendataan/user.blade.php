@@ -11,7 +11,7 @@
             <div class="card">
                 <h5 class="card-header">Data Pengguna</h5>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="example">
                         <thead>
                             <tr>
                                 <th>No</th>
