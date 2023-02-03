@@ -67,6 +67,10 @@
             border-radius: 5px;
         }
 
+        td {
+            font-family: 'OpenS-Regular';  
+        }
+
         .badge-red {
             padding: 5px;
             background-color: #820004;
@@ -78,11 +82,14 @@
         .badge-outline {
             padding: 5px;
             /* background-color: black; */
-            border: 1px solid #ad392b;
-            color: #8a5151;
+            border: 5px solid #ad392b;
+            border-style: double;
+            color: #548a51;
             border-radius: 6px;
             font-family: 'Mont-Bold';
             font-weight: bold;
+            text-align: center;
+            height: auto;
         }
 
         .block {
@@ -96,10 +103,11 @@
             padding: 5px;
             background-color: #dd541d;
             color: #ffda2b;
-            text-align: justify;
             font-family: 'Mont-Bold'; 
             font-weight: 700;
             font-size: 22px;
+            text-align: center;
+            border-radius: 12px;
         }
 
         .col {
@@ -221,16 +229,16 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="text-align: left; padding-left:10px;">cell1_1</td>
-                    <td>cell2_1</td>
-                    <td>cell3_1</td>
-                    <td>cell4_1</td>
+                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
+                    <td>2</td>
+                    <td>Rp 10.000</td>
+                    <td>Rp 20.000</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="row">
-        <div class="col sebelahkanan" >
+        <div class="col sebelahkanan" style="margin-left:52%;">
             <p style="display:inline">
                 <span class="badge-red">DP MINIM 50%</span>
                 
@@ -240,16 +248,16 @@
             </p>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="height:auto;">
         <p class="block2">Harap cantumkan nomor Invoice berwarna biru
             <br> dalam berita transfer saat melakukan payment
         </p>
     </div>
-    <div class="row">
+    <div class="row" style="">
         <p class="badge-outline">Pengerjaan 8-15 hari kerja (bisa lebih lama jika orderan > 100 pcs)</p>
     </div>
-    <div class="row">
-        <p>iniitu - +62 89 628 781 916 - iniitumailnya@gmail.com - LINE @zye3506l </p>
+    <div class="row" style="">
+        <p style="text-align: center; font-family: 'OpenS-Regular'; ">iniitu - +62 89 628 781 916 - iniitumailnya@gmail.com - LINE @zye3506l </p>
     </div>
 </body>
 </html>
