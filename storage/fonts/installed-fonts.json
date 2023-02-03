@@ -1,0 +1,15 @@
+{
+    "montserrat": {
+        "normal": "montserrat_normal_b74b751c20b429298921949795391ef1"
+    },
+    "opens-regular": {
+        "normal": "opens_regular_normal_d7c9ebc612279829f4e3cf0d9fd19253"
+    },
+    "opens-bold": {
+        "normal": "D:\\Data\\Full Stack Developer\\iniitu-invoice\\storage\\fonts\/opens_bold_normal_978ee04af8c775ef4560a3d3c111717e",
+        "bold": "opens_bold_bold_978ee04af8c775ef4560a3d3c111717e"
+    },
+    "mont-bold": {
+        "bold": "mont_bold_bold_c6961a341dc55148ee0877608140acdf"
+    }
+}

@@ -37,6 +37,7 @@
                             <td>$ {{ $item->charge }}</td>
                             <td>$ {{ $item->total_finale }}</td>
                             <td>
+                                <a class="btn rounded-pill btn-icon btn-outline-info" href="/printinv/{{ $item->invoice_code }}"><i class="bx bx-printer"></i></a>
                                 <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
                                 data-bs-target="#delData{{ $item->id }}"><i class="bx bx-trash"></i></a>
                             </td>

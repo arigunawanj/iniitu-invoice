@@ -16,8 +16,8 @@
                       <tr>
                         <th>No</th>
                         <th>Kode Faktur</th>
-                        <th>Nama Barang</th>
                         <th>Nama Customer</th>
+                        <th>Nama Barang</th>
                         <th>Diskon</th>
                         <th>Subtotal</th>
                         <th>Kuantitas</th>
@@ -29,8 +29,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td><span class="badge bg-label-warning">{{ $item->invoice_code }}</span></td>
-                            <td>{{ $item->barang->nama_barang }}</td>
                             <td>{{ $item->customer->nama_customer }}</td>
+                            <td>{{ $item->barang->nama_barang }}</td>
                             <td> 
                                 @if ($item->discount <= 10)
                                     <span class="badge bg-label-info">{{ $item->discount }} %</span> 

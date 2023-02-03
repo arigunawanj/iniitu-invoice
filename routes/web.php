@@ -47,6 +47,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('getname/{id}', [FakturController::class, 'getNama']);
     Route::get('invname/{id}', [InvoiceController::class, 'invName']);
     Route::get('getbfaktur/{id}', [FakturController::class, 'getBarang']);
+
+    // PRINT
+    Route::get('printinv/{id}', [InvoiceController::class, 'printInv']);
+    Route::get('printfaktur/{id}', [FakturController::class, 'printfaktur']);
+     
 });
 
 Auth::routes();

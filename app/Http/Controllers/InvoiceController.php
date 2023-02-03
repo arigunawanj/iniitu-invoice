@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Barang;
 use App\Models\Profil;
 use App\Models\Invoice;
@@ -9,6 +10,7 @@ use App\Models\Customer;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use App\Models\InvoiceDetail;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -143,6 +145,12 @@ class InvoiceController extends Controller
 
         $kode = $data->unique('invoice_code');
         $profil = Profil::where('user_id', Auth::user()->id)->get();
+
+        // PDF akan ditampilkan dengan membawa data yang sudah dideklarasikan
+        $pdf = Pdf::loadView('print.printinter', ['data' => $data, 'kode' => $kode, 'profil' => $profil]);
+        
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
+        return $pdf->setPaper('a4', 'potrait')->stream('Faktur Inter - '. Carbon::now(). '.pdf');
 
     }
 }
