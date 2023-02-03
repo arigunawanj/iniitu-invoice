@@ -164,7 +164,7 @@
             color: blue;
             font-weight: 700;
             text-align: center;
-            margin: -15px 0 0 -5px;
+            margin: -20px 0 0 -5px;
             letter-spacing: 3px;
             font-size: 15px;
         }
@@ -172,7 +172,7 @@
         .sub2 {
             font-family: 'OpenS-Regular'; 
             font-size: 12px;
-            margin: -4px 0 0 115px;
+            margin: -6px 0 0 115px;
         }
         .bill2 {
             font-family: 'Mont-Bold';
@@ -188,6 +188,12 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
         }
+
+        footer {
+            text-align: center;
+            font-family: 'OpenS-Regular';
+            letter-spacing: 2px;
+        }
        
 </style>
 <body>
@@ -199,16 +205,16 @@
             <h1 class="font">INVOICE</h1>
             <p class="sub">IICO 0123 - 00728</p>
             <br>
-            <p class="sub2">Issued : 16/11/1996</p>
+            <p class="sub2" style="margin-top:-14px">Issued : 16/11/1996</p>
             <p class="sub2">Due : On Receipt</p>
         </div>
     </div>
     <div class="row">
         <div class="col left" style="margin-top: 5px; margin-left:28px;">
             <p class="bill">Bill To : </p>
-            <p class="bill2" style="margin-top: -18px; margin-bottom:18px; color:orangered">Ari Gunawan Jatmiko</p>
-            <p class="bill2" style="margin-top: -19px; color:orangered; line-height:12px">Jalan Moch Juki 33 Kec.Sukun Kel.Mulyorejo Kota Malang</p>
-            <p class="bill2" style="margin-top: -17px; color:orangered">085785196574</p>
+            <p class="bill2" style="margin-top: -18px; margin-bottom:18px; color:black; line-height:15px">Ari Gunawan Jatmiko</p>
+            <p class="bill2" style="margin-top: -19px; color:black; line-height:13px">Jalan Moch Juki 33 Kec.Sukun Kel.Mulyorejo Kota Malang</p>
+            <p class="bill2" style="margin-top: -17px; color:black; line-height:16px">085785196574</p>
         </div>
         <div class="col kanan">
             <p class="pay" style="margin-top:18px;">Payable to :</p>
@@ -228,6 +234,24 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
+                    <td>2</td>
+                    <td>Rp 10.000</td>
+                    <td>Rp 20.000</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
+                    <td>2</td>
+                    <td>Rp 10.000</td>
+                    <td>Rp 20.000</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
+                    <td>2</td>
+                    <td>Rp 10.000</td>
+                    <td>Rp 20.000</td>
+                </tr>
                 <tr>
                     <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
                     <td>2</td>
@@ -256,8 +280,8 @@
     <div class="row" style="">
         <p class="badge-outline">Pengerjaan 8-15 hari kerja (bisa lebih lama jika orderan > 100 pcs)</p>
     </div>
-    <div class="row" style="">
-        <p style="text-align: center; font-family: 'OpenS-Regular'; ">iniitu - +62 89 628 781 916 - iniitumailnya@gmail.com - LINE @zye3506l </p>
-    </div>
+    <footer>
+        <p>iniitu • +62 89 628 781 916 • iniitumailnya@gmail.com • LINE @zye3506l </p>
+    </footer>
 </body>
 </html>
