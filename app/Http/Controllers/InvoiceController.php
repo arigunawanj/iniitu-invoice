@@ -9,6 +9,7 @@ use App\Models\Customer;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use App\Models\InvoiceDetail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -132,5 +133,16 @@ class InvoiceController extends Controller
       
         // Data akan direspon ke dalam bentuk JSON dengan membawa data $data
         return response()->json($data);
+    }
+
+    public function printInv($id)
+    {
+        $data = DB::table('invoices')->select('*')->join('invoice_details', 'invoice_details.invoice_code', 'invoices.invoice_code')
+        ->join('barangs', 'barangs.id', 'invoice_details.barang_id')->join('customers', 'customers.id', 'invoices.customer_id')
+        ->where('invoices.invoice_code', $id)->get();
+
+        $kode = $data->unique('invoice_code');
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+
     }
 }

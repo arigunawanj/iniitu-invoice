@@ -9,6 +9,7 @@ use App\Models\Profil;
 use App\Models\Customer;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -153,6 +154,17 @@ class FakturController extends Controller
       
         // Data akan ditampilkan dalam bentuk respon dan bentuk json. Data yang ditampilkan berupa Array
         return response()->json([$li]);
+    }
+
+    public function printfaktur($id)
+    {
+        $data = DB::table('fakturs')->select('*')->join('details', 'details.kode_faktur', 'fakturs.kode_faktur')
+        ->join('barangs', 'barangs.id', 'details.barang_id')->join('customers', 'customers.id', 'fakturs.customer_id')
+        ->where('fakturs.kode_faktur', $id)->get();
+
+        $kode = $data->unique('kode_faktur');
+        $profil = Profil::where('user_id', Auth::user()->id)->get();
+
     }
 
 }
