@@ -67,6 +67,41 @@
             border-radius: 5px;
         }
 
+        .badge-red {
+            padding: 5px;
+            background-color: #820004;
+            color: white;
+            border-radius: 6px;
+            font-family: 'Mont-Bold';
+            font-weight: bold;
+        }
+        .badge-outline {
+            padding: 5px;
+            /* background-color: black; */
+            border: 1px solid #ad392b;
+            color: #8a5151;
+            border-radius: 6px;
+            font-family: 'Mont-Bold';
+            font-weight: bold;
+        }
+
+        .block {
+            padding: 5px;
+            background-color: #c1f3fe;
+            color: black;
+            font-family: 'OpenS-Bold'; 
+            font-weight: bold;
+        }
+        .block2 {
+            padding: 5px;
+            background-color: #dd541d;
+            color: #ffda2b;
+            text-align: justify;
+            font-family: 'Mont-Bold'; 
+            font-weight: 700;
+            font-size: 22px;
+        }
+
         .col {
             float: left;
             padding: 10px;
@@ -126,8 +161,6 @@
             font-size: 15px;
         }
 
-        
-        
         .sub2 {
             font-family: 'OpenS-Regular'; 
             font-size: 12px;
@@ -198,18 +231,22 @@
     </div>
     <div class="row">
         <div class="col sebelahkanan" >
-            <p style="display:inline">DP Minimum 50%</p>
-            <p style="display:inline">Grand Total 552.2K</p>
+            <p style="display:inline">
+                <span class="badge-red">DP MINIM 50%</span>
+                
+            </p>
+            <p style="display:inline">
+                <span class="block">GRAND TOTAL 552.2K</span>
+            </p>
         </div>
     </div>
     <div class="row">
-        <p>Harap Cantumkan nomor Invoice berwarna biru
+        <p class="block2">Harap cantumkan nomor Invoice berwarna biru
             <br> dalam berita transfer saat melakukan payment
         </p>
     </div>
     <div class="row">
-        <p>Pengerjaan 8-15 hari kerja (bisa lebih lama jika orderan > 100 pcs)
-        </p>
+        <p class="badge-outline">Pengerjaan 8-15 hari kerja (bisa lebih lama jika orderan > 100 pcs)</p>
     </div>
     <div class="row">
         <p>iniitu - +62 89 628 781 916 - iniitumailnya@gmail.com - LINE @zye3506l </p>
