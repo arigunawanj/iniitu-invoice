@@ -73,7 +73,7 @@
 
         .right .block {
             position: absolute;
-            right: -191px;
+            right: -202px;
         }
         .right .badge-red {
             position: relative;
@@ -267,7 +267,7 @@
     <div class="row">
         <div class="col right" style="margin-left:30%;">
             
-            <p style="margin-top: 0%;" >
+            <p style="margin-top: 1%;">
                 <span class="badge-red">DP MINIM 50% Rp {{ number_format("$dp",0,",",".") }}</span>
                 
             </p>
