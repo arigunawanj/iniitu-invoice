@@ -48,7 +48,7 @@ class CustomerController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('barang')->with('error', 'Gagal Tambah Customer');
+            return redirect('customer')->with('error', 'Gagal Tambah Customer');
         } else {
             Customer::create($request->all());
             return redirect('customer')->with('success', 'Berhasil Tambah Customer');
