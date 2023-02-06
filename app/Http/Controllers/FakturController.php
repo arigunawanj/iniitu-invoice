@@ -9,6 +9,8 @@ use App\Models\Profil;
 use App\Models\Customer;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -164,6 +166,18 @@ class FakturController extends Controller
 
         $kode = $data->unique('kode_faktur');
         $profil = Profil::where('user_id', Auth::user()->id)->get();
+
+        foreach ($kode as $key) {
+            $total = $key->total_final;
+        }
+
+        $dp = $total * (50/100);
+
+        // PDF akan ditampilkan dengan membawa data yang sudah dideklarasikan
+        $pdf = Pdf::loadView('print.printlokal', ['data' => $data, 'kode' => $kode, 'profil' => $profil, 'dp' => $dp]);
+        
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
+        return $pdf->setPaper('a4', 'potrait')->stream('Faktur Lokal - '. Carbon::now(). '.pdf');
 
     }
 

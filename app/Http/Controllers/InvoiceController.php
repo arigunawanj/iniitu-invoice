@@ -158,6 +158,5 @@ class InvoiceController extends Controller
         
         // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
         return $pdf->setPaper('a4', 'potrait')->stream('Faktur Inter - '. Carbon::now(). '.pdf');
-
     }
 }

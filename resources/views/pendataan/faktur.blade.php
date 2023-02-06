@@ -37,6 +37,7 @@
                             <td>Rp {{ number_format("$item->charge",0,",",".") }}</td>
                             <td>Rp {{ number_format("$item->total_final",0,",",".") }}</td>
                             <td>
+                                <a class="btn rounded-pill btn-icon btn-outline-info" href="/printfaktur/{{ $item->kode_faktur }}"><i class="bx bx-printer"></i></a>
                                 <a class="btn rounded-pill btn-icon btn-outline-danger" href="javascript:void(0);" data-bs-toggle="modal"
                                 data-bs-target="#delData{{ $item->id }}"><i class="bx bx-trash"></i></a>
                             </td>
