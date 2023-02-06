@@ -86,6 +86,13 @@
                         @endif
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-center">TOTAL</td>
+                                <td>Rp {{ number_format("$lokal",0,",",".") }}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -169,6 +176,13 @@
                     @endif
                         @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-center">TOTAL</td>
+                                <td>$ {{ number_format("$inter",2,",",".") }}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

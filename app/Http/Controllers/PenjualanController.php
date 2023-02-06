@@ -6,6 +6,7 @@ use App\Models\Profil;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PenjualanController extends Controller
 {
@@ -17,8 +18,10 @@ class PenjualanController extends Controller
     public function index()
     {
         $penjualan = Penjualan::all();
+        $lokal = DB::table('penjualans')->select('*')->where('jenis', 0)->sum('jumlah');
+        $inter = DB::table('penjualans')->select('*')->where('jenis', 1)->sum('jumlah');
         $profil = Profil::where('user_id', Auth::user()->id)->get();
-        return view('pendataan.penjualan', compact('penjualan', 'profil'));
+        return view('pendataan.penjualan', compact('penjualan', 'profil', 'lokal', 'inter'));
     }
 
     /**
