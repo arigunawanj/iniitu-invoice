@@ -111,6 +111,7 @@
             color: black;
             font-family: 'OpenS-Bold'; 
             font-weight: bold;
+            border-radius: 6px;
         }
         .block2 {
             padding: 5px;
@@ -133,7 +134,7 @@
         }
 
         .right {
-            width: 30%;
+            width: 40%;
             margin-left: 20px;
         }
         .sebelahkiri, .sebelahkanan {
@@ -264,15 +265,42 @@
         </table>
     </div>
     <div class="row">
-        <div class="col right" style="margin-left:40%;">
+        <div class="col right" style="margin-left:30%;">
             
-            <p style="display:inline">
+            <p style="margin-top: 0%;" >
                 <span class="badge-red">DP MINIM 50% Rp {{ number_format("$dp",0,",",".") }}</span>
                 
             </p>
+            @php
+                function singkat_angka($n, $presisi=1) {
+                        if ($n < 900) {
+                            $format_angka = number_format($n, $presisi);
+                            $simbol = '';
+                        } else if ($n < 900000) {
+                            $format_angka = number_format($n / 1000, $presisi);
+                            $simbol = 'K';
+                        } else if ($n < 900000000) {
+                            $format_angka = number_format($n / 1000000, $presisi);
+                            $simbol = 'jt';
+                        } else if ($n < 900000000000) {
+                            $format_angka = number_format($n / 1000000000, $presisi);
+                            $simbol = 'M';
+                        } else {
+                            $format_angka = number_format($n / 1000000000000, $presisi);
+                            $simbol = 'T';
+                        }
+                    
+                        if ( $presisi > 0 ) {
+                            $pisah = '.' . str_repeat( '0', $presisi );
+                            $format_angka = str_replace( $pisah, '', $format_angka );
+                        }
+                        
+                        return $format_angka . $simbol;
+                    }
+            @endphp
             @foreach ($kode as $item)
-            <p style="display:inline">
-                <span class="block">GRAND TOTAL Rp {{ number_format("$item->total_final",0,",",".") }}</span>
+            <p style="margin-top: -50%; position:relative">
+                <span class="block">GRAND TOTAL Rp {{ singkat_angka($item->total_final) }}</span>
             </p>
             @endforeach
         </div>
