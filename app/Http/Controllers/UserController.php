@@ -75,9 +75,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if($request->password){
+            $user->update([
+                'password' => Hash::make($request->password)
+            ]);
+        } else {
+            $user->update([
+                'password' => $user->password
+            ]);
+        }
     }
 
     /**
@@ -91,4 +99,6 @@ class UserController extends Controller
         $user->delete();
         return redirect('user')->with('success', 'Berhasil Hapus Data Pengguna');
     }
+
+    
 }
