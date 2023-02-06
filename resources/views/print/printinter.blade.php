@@ -75,6 +75,10 @@
             position: absolute;
             right: -191px;
         }
+        .right .badge-red {
+            position: relative;
+            right: -35px;
+        }
 
         td {
             font-family: 'OpenS-Regular';  
@@ -256,42 +260,6 @@
                     <td>$ {{ $item->subtotal }}</td>
                 </tr>
                 @endforeach
-                <tr>
-                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
-                    <td>2</td>
-                    <td>Rp 10.000</td>
-                    <td>Rp 20.000</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
-                    <td>2</td>
-                    <td>Rp 10.000</td>
-                    <td>Rp 20.000</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
-                    <td>2</td>
-                    <td>Rp 10.000</td>
-                    <td>Rp 20.000</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
-                    <td>2</td>
-                    <td>Rp 10.000</td>
-                    <td>Rp 20.000</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
-                    <td>2</td>
-                    <td>Rp 10.000</td>
-                    <td>Rp 20.000</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; padding-left:10px;">Ceramic Sheraton</td>
-                    <td>2</td>
-                    <td>Rp 10.000</td>
-                    <td>Rp 20.000</td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -309,7 +277,7 @@
             @endforeach
         </div>
     </div>
-    <div class="row" style="height:auto;">
+    <div class="row" style="height:auto; margin-top: 25px">
         <p class="block2">Harap cantumkan nomor Invoice berwarna biru
             <br> dalam berita transfer saat melakukan payment
         </p>
