@@ -351,6 +351,17 @@
 } );
     </script>
     <script>
+       $(document).ready(function() {
+    var table = $('#example2').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+    } );
+ 
+    table.buttons().container()
+        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+} );
+    </script>
+    <script>
         $('#logout').on("click", function() {
             swal.fire({
                 title: 'Apa Kamu Yakin mau Logout?',
