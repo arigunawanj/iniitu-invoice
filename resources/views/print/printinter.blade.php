@@ -133,7 +133,7 @@
         }
 
         .right {
-            width: 30%;
+            width: 40%;
             margin-left: 20px;
         }
         .sebelahkiri, .sebelahkanan {
@@ -247,6 +247,7 @@
                     <th>Item Description</th>
                     <th>QTY</th>
                     <th>Price</th>
+                    <th>Discount</th>
                     <th>Subtotal</th>
                 </tr>
             </thead>
@@ -257,6 +258,7 @@
                     <td style="text-align: left; padding-left:10px;">{{ $item->nama_barang }}</td>
                     <td>{{ $item->qty }}</td>
                     <td>$ {{ $item->harga_dollar }}</td>
+                    <td>{{ $item->discount }} %</td>
                     <td>$ {{ $item->subtotal }}</td>
                 </tr>
                 @endforeach
@@ -264,14 +266,12 @@
         </table>
     </div>
     <div class="row">
-        <div class="col right" style="margin-left:40%;">
-            
-            <p style="display:inline">
+        <div class="col right" style="margin-left:30%;">
+            <p sstyle="margin-top: -15%;">
                 <span class="badge-red">DP MINIM 50% $ {{ $dp }}</span>
-                
             </p>
             @foreach ($kode as $item)
-            <p style="display:inline">
+            <p style="margin-top: -22%; position:relative">
                 <span class="block">GRAND TOTAL $ {{ $item->total_finale }}</span>
             </p>
             @endforeach

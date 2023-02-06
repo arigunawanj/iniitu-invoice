@@ -248,6 +248,7 @@
                     <th>Item Description</th>
                     <th>QTY</th>
                     <th>Price</th>
+                    <th>Discount</th>
                     <th>Subtotal</th>
                 </tr>
             </thead>
@@ -258,6 +259,7 @@
                     <td style="text-align: left; padding-left:10px;">{{ $item->nama_barang }}</td>
                     <td>{{ $item->qty }}</td>
                     <td>Rp {{ number_format("$item->harga",0,",",".") }}</td>
+                    <td>{{ $item->diskon }} %</td>
                     <td>Rp {{ number_format("$item->subtotal",0,",",".") }}</td>
                 </tr>
                 @endforeach
@@ -266,11 +268,6 @@
     </div>
     <div class="row">
         <div class="col right" style="margin-left:30%;">
-            
-            <p style="margin-top: 1%;">
-                <span class="badge-red">DP MINIM 50% Rp {{ number_format("$dp",0,",",".") }}</span>
-                
-            </p>
             @php
                 function singkat_angka($n, $presisi=1) {
                         if ($n < 900) {
@@ -298,6 +295,12 @@
                         return $format_angka . $simbol;
                     }
             @endphp
+            
+            <p style="margin-top: 1%;">
+                <span class="badge-red">DP MINIM 50% {{ singkat_angka($dp) }}</span>
+                
+            </p>
+            
             @foreach ($kode as $item)
             <p style="margin-top: -50%; position:relative">
                 <span class="block">GRAND TOTAL Rp {{ singkat_angka($item->total_final) }}</span>
