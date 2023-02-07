@@ -224,7 +224,7 @@
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text">
                                             <i class='bx bx-dollar'></i></span>
-                                        <input type="number" id="basic-icon-default-phone"
+                                        <input type="text" id="basic-icon-default-phone"
                                             class="form-control phone-mask" placeholder="Masukkan Harga Dollar..."
                                             name="harga_dollar" aria-describedby="basic-icon-default-phone2" />
                                     </div>
