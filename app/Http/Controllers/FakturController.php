@@ -178,7 +178,7 @@ class FakturController extends Controller
         
         foreach ($data as $isian){
             // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
-            return $pdf->setPaper('a4', 'potrait')->stream( $isian->kode_faktur . ' - ' . $isian->tanggal_faktur . '.pdf');
+            return $pdf->setPaper('a4', 'potrait')->stream( 'Fakur Lokal' . ' • ' . $isian->kode_faktur . '.pdf');
         }
 
     }
