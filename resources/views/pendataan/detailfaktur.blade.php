@@ -141,7 +141,7 @@
                                             <select name="barang_id" class="form-select" id="nama_barang" onchange="harga(value)">
                                                 <option selected value="">Pilih Barang..</option>
                                                 @foreach ($barang as $item)
-                                                <option value="{{ $item->id }}">{{ $item->kode_barang }} - {{ $item->nama_barang }}</option>
+                                                <option value="{{ $item->id }}">{{ $item->kode_barang }} . {{ $item->nama_barang }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
