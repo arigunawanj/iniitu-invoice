@@ -56,22 +56,6 @@
                                                         <div class="row">
                                                             <div class="row mb-3">
                                                                 <label class="col-sm-2 col-form-label"
-                                                                    for="basic-icon-default-fullname">Nama
-                                                                    Barang</label>
-                                                                <div class="col-sm-10">
-                                                                    <div class="input-group input-group-merge">
-                                                                        <span id="basic-icon-default-fullname2"
-                                                                            class="input-group-text"><i class='bx bx-box'></i></span>
-                                                                        <input type="text" class="form-control"
-                                                                            id="basic-icon-default-fullname"
-                                                                            placeholder="Masukkan Nama..." name="nama_barang"
-                                                                            value="{{ $item->nama_barang }}"
-                                                                            aria-describedby="basic-icon-default-fullname2" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                                <label class="col-sm-2 col-form-label"
                                                                     for="basic-icon-default-company">Kode
                                                                     Barang</label>
                                                                 <div class="col-sm-10">
@@ -86,6 +70,23 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="row mb-3">
+                                                                <label class="col-sm-2 col-form-label"
+                                                                    for="basic-icon-default-fullname">Nama
+                                                                    Barang</label>
+                                                                <div class="col-sm-10">
+                                                                    <div class="input-group input-group-merge">
+                                                                        <span id="basic-icon-default-fullname2"
+                                                                            class="input-group-text"><i class='bx bx-box'></i></span>
+                                                                        <input type="text" class="form-control"
+                                                                            id="basic-icon-default-fullname"
+                                                                            placeholder="Masukkan Nama..." name="nama_barang"
+                                                                            value="{{ $item->nama_barang }}"
+                                                                            aria-describedby="basic-icon-default-fullname2" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
                                                             <div class="row mb-3">
                                                                 <label class="col-sm-2 form-label" for="basic-icon-default-phone">Harga
                                                                     Barang</label>
@@ -181,19 +182,6 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
-                                    Barang</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                                class='bx bx-box'></i></span>
-                                        <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                            placeholder="Masukkan Nama Barang..." name="nama_barang"
-                                            aria-describedby="basic-icon-default-fullname2" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Kode
                                     Barang</label>
                                 <div class="col-sm-10">
@@ -203,6 +191,19 @@
                                         <input type="text" id="basic-icon-default-company" class="form-control"
                                             placeholder="Masukkan Kode Barang..." name="kode_barang"
                                             aria-describedby="basic-icon-default-company2" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
+                                    Barang</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                                class='bx bx-box'></i></span>
+                                        <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                            placeholder="Masukkan Nama Barang..." name="nama_barang"
+                                            aria-describedby="basic-icon-default-fullname2" />
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +225,7 @@
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-phone2" class="input-group-text">
                                             <i class='bx bx-dollar'></i></span>
-                                        <input type="number" id="basic-icon-default-phone"
+                                        <input type="text" id="basic-icon-default-phone"
                                             class="form-control phone-mask" placeholder="Masukkan Harga Dollar..."
                                             name="harga_dollar" aria-describedby="basic-icon-default-phone2" />
                                     </div>

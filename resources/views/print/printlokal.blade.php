@@ -67,14 +67,7 @@
             border-radius: 5px;
         }
 
-        .right {
-            position: relative;
-        }
-
-        .right .block {
-            position: absolute;
-            right: -202px;
-        }
+    
         .right .badge-red {
             position: relative;
             right: -35px;
@@ -93,7 +86,7 @@
             font-weight: bold;
         }
         .badge-outline {
-            padding: 5px;
+            padding: 6px;
             /* background-color: black; */
             border: 5px solid #ad392b;
             border-style: double;
@@ -103,6 +96,7 @@
             font-weight: bold;
             text-align: center;
             height: auto;
+            letter-spacing: 1px;
         }
 
         .block {
@@ -114,14 +108,16 @@
             border-radius: 6px;
         }
         .block2 {
-            padding: 5px;
+            padding: 7px;
             background-color: #dd541d;
             color: #ffda2b;
             font-family: 'Mont-Bold'; 
             font-weight: 700;
-            font-size: 22px;
+            font-size: 20px;
             text-align: center;
             border-radius: 12px;
+            line-height: 100%;
+            letter-spacing: 10%;
         }
 
         .col {
@@ -135,7 +131,7 @@
 
         .right {
             width: 40%;
-            margin-left: 20px;
+            margin-left: 0;
         }
         .sebelahkiri, .sebelahkanan {
             width: 50%;
@@ -179,14 +175,14 @@
             font-weight: 700;
             text-align: center;
             margin: -20px 0 0 -5px;
-            letter-spacing: 3px;
+            letter-spacing: 2.5px;
             font-size: 15px;
         }
 
         .sub2 {
             font-family: 'OpenS-Regular'; 
             font-size: 12px;
-            margin: -6px 0 0 115px;
+            margin: -6px 0 0 114px;
         }
         .bill2 {
             font-family: 'Mont-Bold';
@@ -204,6 +200,11 @@
         }
 
         footer {
+            position: fixed;
+            bottom: -32px; 
+            left: 0px; 
+            right: 0px;
+            height: 50px; 
             text-align: center;
             font-family: 'OpenS-Regular';
             letter-spacing: 2px;
@@ -211,34 +212,59 @@
        
 </style>
 <body>
+    @php
+    function singkat_angka($n, $presisi=1) {
+            if ($n < 900) {
+                $format_angka = number_format($n, $presisi);
+                $simbol = '';
+            } else if ($n < 900000000000) {
+                $format_angka = number_format($n / 1000, $presisi);
+                $simbol = 'K';
+            } else {
+                $format_angka = number_format($n / 1000000000000, $presisi);
+                $simbol = 'T';
+            }
+        
+            if ( $presisi > 0 ) {
+                $pisah = '.' . str_repeat( '0', $presisi );
+                $format_angka = str_replace( $pisah, '', $format_angka );
+            }
+            
+            return $format_angka . $simbol;
+        }
+    @endphp
     <div class="row">
         <div class="col sebelahkiri">
             <img src="{{ public_path('isi/assets/img/logo-f.png') }}" alt="logo" width="110px" srcset="">
         </div>
-        <div class="col sebelahkanan" style="margin-top:-20px">
+        <div class="col sebelahkanan" style="margin-top:-37px">
             <h1 class="font">INVOICE</h1>
             @foreach ($kode as $item)
             <p class="sub">IICO {{ $item->kode_faktur }}</p>
             <br>
-            <p class="sub2" style="margin-top:-14px">Issued : {{ $item->tanggal_faktur }}</p>
+                @php
+                    $tanggal = date_create($item->tanggal_faktur);
+                    $hasiltanggal =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%b %d, %Y');
+                @endphp
+            <p class="sub2" style="margin-top:-14px">Issued: {{ $hasiltanggal }}</p>
             @endforeach
-            <p class="sub2">Due : On Receipt</p>
+            <p class="sub2">Due: On Receipt</p>
         </div>
     </div>
     <div class="row">
         <div class="col left" style="margin-top: 5px; margin-left:28px;">
-            <p class="bill2">Bill To : </p>
+            <p class="bill2">Bill to: </p>
             @foreach ($kode as $item)
-            <p class="bill" style="margin-top: -18px; margin-bottom:18px; color:black; line-height:15px">{{ $item->nama_customer }}</p>
+            <p class="bill" style="margin-top: -18px; margin-bottom:18px; color:black; line-height:22px">{{ $item->nama_customer }}</p>
             <p class="bill" style="margin-top: -19px; color:black; line-height:13px">{{ $item->alamat_customer }}</p>
-            <p class="bill" style="margin-top: -17px; color:black; line-height:16px">{{ $item->telepon_customer }}</p>
+            <p class="bill" style="margin-top: -17px; color:black; line-height:19px">{{ $item->telepon_customer }}</p>
             @endforeach
         </div>
         <div class="col kanan">
-            <p class="sub3" style="margin-top:18px;">Payable to :</p>
-            <p class="pay" style="margin-top:-17px;">BCA - Ari Gunawan Jatmiko</p>
-            <p class="sub3" style="margin-top:-13px;">Account Number :</p>
-            <p class="pay" style="margin-top:-17px;">06206148403</p>
+            <p class="sub3" style="margin-top:17px;">Payable to:</p>
+            <p class="pay" style="margin-top:-9px;">BCA - Ramadhana D. A</p>
+            <p class="sub3" style="margin-top:-5px;">Account Number:</p>
+            <p class="pay" style="margin-top:-11px;">385 069 0595</p>
         </div>
     </div>
     <div class="row">
@@ -246,7 +272,7 @@
             <thead>
                 <tr>
                     <th>Item Description</th>
-                    <th>QTY</th>
+                    <th>Qty</th>
                     <th>Price</th>
                     <th>Discount</th>
                     <th>Subtotal</th>
@@ -258,65 +284,43 @@
                 <tr>
                     <td style="text-align: left; padding-left:10px;">{{ $item->nama_barang }}</td>
                     <td>{{ $item->qty }}</td>
-                    <td>Rp {{ number_format("$item->harga",0,",",".") }}</td>
+                    <td>@ {{ singkat_angka($item->harga) }}</td>
                     <td>{{ $item->diskon }} %</td>
-                    <td>Rp {{ number_format("$item->subtotal",0,",",".") }}</td>
+                    <td>Rp {{ singkat_angka($item->subtotal) }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
     <div class="row">
-        <div class="col right" style="margin-left:30%;">
-            @php
-                function singkat_angka($n, $presisi=1) {
-                        if ($n < 900) {
-                            $format_angka = number_format($n, $presisi);
-                            $simbol = '';
-                        } else if ($n < 900000) {
-                            $format_angka = number_format($n / 1000, $presisi);
-                            $simbol = 'K';
-                        } else if ($n < 900000000) {
-                            $format_angka = number_format($n / 1000000, $presisi);
-                            $simbol = 'jt';
-                        } else if ($n < 900000000000) {
-                            $format_angka = number_format($n / 1000000000, $presisi);
-                            $simbol = 'M';
-                        } else {
-                            $format_angka = number_format($n / 1000000000000, $presisi);
-                            $simbol = 'T';
-                        }
-                    
-                        if ( $presisi > 0 ) {
-                            $pisah = '.' . str_repeat( '0', $presisi );
-                            $format_angka = str_replace( $pisah, '', $format_angka );
-                        }
-                        
-                        return $format_angka . $simbol;
-                    }
-            @endphp
-            
-            <p style="margin-top: 1%;">
-                <span class="badge-red">DP MINIM 50% {{ singkat_angka($dp) }}</span>
-                
+        <div class="col right">
+            <p>
+                <span class="badge-red">ADMIN CHARGE {{ singkat_angka($item->charge) }}</span>
             </p>
             
+        </div>
+        <div class="col right">
+            <p>
+                <span class="badge-red">DP MINIM 50% {{ singkat_angka($dp) }}</span>
+            </p>
+        </div>
+        <div class="col right">
             @foreach ($kode as $item)
-            <p style="margin-top: -50%; position:relative">
-                <span class="block">GRAND TOTAL Rp {{ singkat_angka($item->total_final) }}</span>
+            <p>
+                <span class="block">GRAND TOTAL {{ singkat_angka($item->total_final) }}</span>
             </p>
             @endforeach
         </div>
     </div>
-    <div class="row" style="height:auto; margin-top: 25px">
-        <p class="block2">Harap cantumkan nomor Invoice berwarna biru
+    <div class="row" style="height:auto; margin-top: 25px;">
+        <p class="block2" >Harap cantumkan nomor Invoice berwarna biru
             <br> dalam berita transfer saat melakukan payment
         </p>
     </div>
-    <div class="row" style="margin-top: -25px">
+    <div class="row" style="margin-top: -20px">
         <p class="badge-outline">Pengerjaan 8-15 hari kerja (bisa lebih lama jika orderan > 100 pcs)</p>
     </div>
-    <footer style="margin-top: -25px">
+    <footer>
         <p>iniitu • +62 89 628 781 916 • iniitumailnya@gmail.com • LINE @zye3506l </p>
     </footer>
 </body>

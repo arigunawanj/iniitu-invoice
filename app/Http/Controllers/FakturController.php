@@ -176,8 +176,10 @@ class FakturController extends Controller
         // PDF akan ditampilkan dengan membawa data yang sudah dideklarasikan
         $pdf = Pdf::loadView('print.printlokal', ['data' => $data, 'kode' => $kode, 'profil' => $profil, 'dp' => $dp]);
         
-        // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
-        return $pdf->setPaper('a4', 'potrait')->stream('Faktur Lokal - '. Carbon::now(). '.pdf');
+        foreach ($data as $isian){
+            // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
+            return $pdf->setPaper('a4', 'potrait')->stream( 'Fakur Lokal' . ' • ' . $isian->kode_faktur . '.pdf');
+        }
 
     }
 
