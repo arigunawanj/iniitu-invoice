@@ -284,9 +284,9 @@
                 <tr>
                     <td style="text-align: left; padding-left:10px;">{{ $item->nama_barang }}</td>
                     <td>{{ $item->qty }}</td>
-                    <td>@ {{ number_format("$item->harga",0,",",".") }}</td>
+                    <td>@ {{ singkat_angka($item->harga) }}</td>
                     <td>{{ $item->diskon }} %</td>
-                    <td>Rp {{ number_format("$item->subtotal",0,",",".") }}</td>
+                    <td>Rp {{ singkat_angka($item->subtotal) }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -307,7 +307,7 @@
         <div class="col right">
             @foreach ($kode as $item)
             <p>
-                <span class="block">GRAND TOTAL Rp {{ singkat_angka($item->total_final) }}</span>
+                <span class="block">GRAND TOTAL {{ singkat_angka($item->total_final) }}</span>
             </p>
             @endforeach
         </div>
