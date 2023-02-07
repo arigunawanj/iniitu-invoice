@@ -182,7 +182,7 @@
         .sub2 {
             font-family: 'OpenS-Regular'; 
             font-size: 12px;
-            margin: -6px 0 0 75px;
+            margin: -6px 0 0 114px;
         }
         .bill2 {
             font-family: 'Mont-Bold';
@@ -237,7 +237,7 @@
         <div class="col sebelahkiri">
             <img src="{{ public_path('isi/assets/img/logo-f.png') }}" alt="logo" width="110px" srcset="">
         </div>
-        <div class="col sebelahkanan" style="margin-top:-20px">
+        <div class="col sebelahkanan" style="margin-top:-37px">
             <h1 class="font">INVOICE</h1>
             @foreach ($kode as $item)
             <p class="sub">IICO {{ $item->kode_faktur }}</p>
