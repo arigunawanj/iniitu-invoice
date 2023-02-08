@@ -96,7 +96,7 @@
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                class="bx bx-buildings"></i></span>
+                                                class="bx bx-barcode"></i></span>
                                         <select name="kode_faktur" onchange="nama(value)" id="" class="form-select">
                                             <option selected value="">Pilih Kode Faktur...</option>
                                             @foreach ($dfaktur as $item)
@@ -125,7 +125,7 @@
                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Tanggal Faktur</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                        <span class="input-group-text"><i class='bx bxs-calendar'></i></span>
                                         <input type="date" id="basic-icon-default-email" class="form-control"
                                             placeholder="Masukkan Tanggal..." name="tanggal_faktur"
                                             aria-describedby="basic-icon-default-email2" />
@@ -136,8 +136,7 @@
                                 <label class="col-sm-2 form-label" for="basic-icon-default-phone">Total</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                class="bx bx-phone"></i></span>
+                                        <span id="basic-icon-default-phone2" class="input-group-text"><i class='bx bx-receipt'></i></span>
                                         <input type="text" id="total_harga" name="total" onkeyup="nama(value)"
                                             class="form-control phone-mask" placeholder="Total Harga..."
                                             aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
@@ -148,8 +147,7 @@
                                 <label class="col-sm-2 form-label" for="basic-icon-default-phone">Admin Charge</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                class="bx bx-phone"></i></span>
+                                        <span id="basic-icon-default-phone2" class="input-group-text"><i class='bx bx-money' ></i></span>
                                         <input type="text" id="charge" class="form-control phone-mask" placeholder="Masukkan Charge..." onkeyup="isi()" />
                                         <input type="hidden" name="charge" id="chargesum">
                                     </div>
@@ -159,8 +157,7 @@
                                 <label class="col-sm-2 form-label" for="basic-icon-default-phone">Total Final</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                class="bx bx-phone"></i></span>
+                                        <span id="basic-icon-default-phone2" class="input-group-text"><i class='bx bx-credit-card-front' ></i></span>
                                         <input type="text" id="total_pp" disabled
                                             class="form-control phone-mask" placeholder="Total Final..."
                                             />
@@ -172,8 +169,7 @@
                                 <label class="col-sm-2 form-label" for="basic-icon-default-phone">Keterangan</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                class="bx bx-phone"></i></span>
+                                        <span id="basic-icon-default-phone2" class="input-group-text"><i class='bx bx-notepad' ></i></span>
                                         <input type="text" name="ket_faktur" class="form-control phone-mask" placeholder="Tuliskan Keterangan..."/>
                                     </div>
                                 </div>
