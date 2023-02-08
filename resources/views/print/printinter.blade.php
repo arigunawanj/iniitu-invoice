@@ -106,9 +106,9 @@
             color: #548a51;
             border-radius: 6px;
             font-family: 'Mont-Bold';
+            font-size: 14px;
             font-weight: bold;
             text-align: center;
-            letter-spacing: 1px;
         }
 
         .block {
@@ -310,12 +310,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class="container-grid">
+            <div class="container-grid" style="margin-top:30px;">
                 <div class="item-grid">
-                    <p class="block" style="margin-top:30px;">
-                        ADMIN FEE <span style="margin-left: 40px">${{ $item->charge }}</span>
-                    </p>
-                    
+                    @if (!$item->charge == 0)
+                        <p class="block">
+                            ADMIN FEE <span style="margin-left: 40px">${{ $item->charge }}</span>
+                        </p>
+                    @endif
                 </div>
                 <div class="item-grid">
                     @foreach ($kode as $item)
@@ -331,12 +332,11 @@
                 </div>
             </div>
             <div class="row" style="height:auto; margin-top: 0px;">
-                <p class="block2" >Harap cantumkan nomor Invoice berwarna biru
-                    <br> dalam berita transfer saat melakukan payment
+                <p class="block2" >Please put the invoice number in the transfer <br> report when you doing payment
                 </p>
             </div>
             <div class="row" style="margin-top: -20px">
-                <p class="badge-outline">Pengerjaan 8-15 hari kerja (order normal qty &lt; 100pcs & non event)</p>
+                <p class="badge-outline">The work takes 8-15 working days exclude holidays (normal quantity &lt; 100pcs & non event)</p>
             </div>
             <footer>
                 <p>iniitu • +62 89 628 781 916 • iniitumailnya@gmail.com • LINE @zye3506l </p>

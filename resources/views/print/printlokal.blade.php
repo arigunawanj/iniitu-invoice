@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Print Inter</title>
+    <title>Print Lokal</title>
 </head>
 <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -232,7 +232,7 @@
 
         .item-grid {
             grid-template-rows: 50px 50px 50px;
-            margin-left: 480px;
+            margin-left: 470px;
             line-height: 10px;
             margin-top: -20px;
         }
@@ -331,23 +331,25 @@
                     </tbody>
                 </table>
             </div>
-            <div class="container-grid">
+            <div class="container-grid" style="margin-top:30px;">
                 <div class="item-grid">
-                    <p class="block" style="margin-top:30px;">
-                        ADMIN FEE <span style="margin-left: 40px">{{ singkat_angka($item->charge) }}</span>
-                    </p>
+                    @if (!$item->charge == 0)
+                        <p class="block">
+                            ADMIN FEE <span style="margin-left: 40px">{{ singkat_angka($item->charge) }}</span>
+                        </p>
+                    @endif
                     
                 </div>
                 <div class="item-grid">
                     @foreach ($kode as $item)
                     <p class="block">
-                        GRAND TOTAL <span style="margin-left: 14px">{{ singkat_angka($item->total_final) }}</span>
+                        GRAND TOTAL<span style="margin-left: 20px">{{ singkat_angka($item->total_final) }}</span>
                     </p>
                     @endforeach
                 </div>
                 <div class="item-grid">
                     <p class="badge-red">
-                        MINIMUM DP  <span style="margin-left: 24px">{{ singkat_angka($dp) }}</span>
+                        MINIMUM DP  <span style="margin-left: 25px">{{ singkat_angka($dp) }}</span>
                     </p>
                 </div>
             </div>
