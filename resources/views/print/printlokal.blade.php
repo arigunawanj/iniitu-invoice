@@ -67,32 +67,18 @@
             border-radius: 5px;
         }
 
-        .rightlow {
-            margin-left: 0%;
-        }
-
-        .rightlow .block {
-            position: absolute;
-            right: 415px;
-        }
-
-        .rightlow .badge-red {
-            position: relative;
-            top: 4px;
-            right: -90px;
-        }
-
         td {
             font-family: 'OpenS-Regular';  
         }
 
         .badge-red {
-            padding: 5px;
+            padding: 12px;
             background-color: #820004;
-            color: white;
+            color: rgb(255, 255, 255);
             border-radius: 6px;
             font-family: 'Mont-Bold';
             font-weight: bold;
+            text-align: left;
         }
         .badge-outline {
             padding: 6px;
@@ -104,17 +90,17 @@
             font-family: 'Mont-Bold';
             font-weight: bold;
             text-align: center;
-            height: auto;
             letter-spacing: 1px;
         }
 
         .block {
-            padding: 5px;
-            background-color: #c1f3fe;
+            padding: 12px;
+            background-color: #94DDF0;
             color: black;
-            font-family: 'OpenS-Bold'; 
-            font-weight: bold;
             border-radius: 6px;
+            font-family: 'Mont-Bold';
+            font-weight: bold;
+            text-align: left;
         }
         .block2 {
             padding: 7px;
@@ -225,8 +211,9 @@
 
         .item-grid {
             grid-template-rows: 50px 50px 50px;
-            margin-left: 500px;
-            line-height: 5px;
+            margin-left: 480px;
+            line-height: 10px;
+            margin-top: -20px;
         }
        
 </style>
@@ -311,24 +298,24 @@
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <div class="col right">
-            <p>
-                <span class="badge-red">ADMIN CHARGE {{ singkat_angka($item->charge) }}</span>
+    <div class="container-grid">
+        <div class="item-grid">
+            <p class="block" style="margin-top:30px;">
+                ADMIN FEE <span style="margin-left: 50px"> {{ singkat_angka($item->charge) }}</span>
             </p>
             
         </div>
-        <div class="col right">
-            <p>
-                <span class="badge-red">DP MINIM 50% {{ singkat_angka($dp) }}</span>
-            </p>
-        </div>
-        <div class="col right">
+        <div class="item-grid">
             @foreach ($kode as $item)
-            <p>
-                <span class="block">GRAND TOTAL {{ singkat_angka($item->total_final) }}</span>
+            <p class="block">
+                GRAND TOTAL <span style="margin-left: 4px"> {{ singkat_angka($item->total_final) }}</span>
             </p>
             @endforeach
+        </div>
+        <div class="item-grid">
+            <p class="badge-red">
+                DP MINIMAL  <span style="margin-left: 30px"> {{ singkat_angka($dp) }}</span>
+            </p>
         </div>
     </div>
     <div class="row" style="height:auto; margin-top: 25px;">
