@@ -177,7 +177,7 @@
         .sub2 {
             font-family: 'OpenS-Regular'; 
             font-size: 12px;
-            margin: -6px 0 0 114px;
+            margin: -6px 0 0 94px;
         }
         .bill2 {
             font-family: 'Mont-Bold';
@@ -251,10 +251,14 @@
                 @php
                     $tanggal = date_create($item->tanggal_faktur);
                     $hasiltanggal =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%b %d, %Y');
+
+                    $tambahtanggal  = date('Y-m-d', strtotime($item->tanggal_faktur . ' + 1 day'));
+                    $tanggal2 = date_create($tambahtanggal);
+                    $hasiltanggal2 =  \Carbon\Carbon::parse($tanggal2)->formatLocalized('%b %d, %Y');
                 @endphp
-            <p class="sub2" style="margin-top:-14px">Issued: {{ $hasiltanggal }}</p>
+            <p class="sub2" style="margin-top:-14px">Issued Date <span>: {{ $hasiltanggal }}</span></p>
             @endforeach
-            <p class="sub2">Due: On Receipt</p>
+            <p class="sub2" style="margin-top:-1px">Due Date <span style="margin-left:15px;">: {{ $hasiltanggal2 }}</span></p>
         </div>
     </div>
     <div class="row">

@@ -86,6 +86,8 @@ class UserController extends Controller
                 'password' => $user->password
             ]);
         }
+
+        return redirect('profil')->with('success', 'Berhasil Ganti Password');
     }
 
     /**
