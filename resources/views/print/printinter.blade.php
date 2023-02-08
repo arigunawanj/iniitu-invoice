@@ -288,10 +288,8 @@
                             <th>Item Description</th>
                             <th>Qty</th>
                             <th>Price</th>
+                            <th>Discount</th>
                             <th>Subtotal</th>
-                            @if (!$item->discount == 0)
-                                <th>Discount</th>
-                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -303,6 +301,8 @@
                             <td>$ {{ $item->harga_dollar }}</td>
                             @if (!$item->discount == 0)
                                 <td>{{ $item->discount }} %</td>
+                            @else
+                                <td>-</td>
                             @endif
                             <td>$ {{ $item->subtotal }}</td>
                         </tr>
