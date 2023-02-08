@@ -125,6 +125,8 @@
                     </tr>
                 </tfoot>
             </table>
+        </div>
+        <div class="page-break">
             <h3>LAPORAN PENJUALAN INTERNASIONAL</h3>
             <table class="table table-bordered">
                 <thead>
@@ -162,7 +164,7 @@
                 <tfoot>
                     <tr style="border: 2px solid;">
                         <th colspan="4">Jumlah</th>
-                        <th>Rp {{ number_format($pertahun2, 0, ',', '.') }}</th>
+                        <th>$ {{ number_format($pertahun2, 0, ',', '.') }}</th>
                         <th colspan="2"></th>
                     </tr>
                     <tr style="border: 2px solid;">
@@ -177,7 +179,7 @@
             </table>
         </div>
         <div class="page-break">
-            <h1 class="text-center">Data Penjualan Tahunan @if (!$id == 0) {{ $id }} @endif</h1>
+            <h1 class="text-center">Data Penjualan Tahunan Lokal @if (!$id == 0) {{ $id }} @endif</h1>
             <p class="text-center">
                 @php
                     setlocale(LC_ALL, 'IND');
@@ -211,6 +213,44 @@
                 <tfoot>
                     <th>Jumlah</th>
                     <th>Rp {{ number_format($pertahun, 0, ',', '.') }}</th>
+                </tfoot>
+            </table>
+        </div>
+        <div class="page-break">
+            <h1 class="text-center">Data Penjualan Tahunan Inter @if (!$id == 0) {{ $id }} @endif</h1>
+            <p class="text-center">
+                @php
+                    setlocale(LC_ALL, 'IND');
+                    $data = strftime('%A, %d %B %Y');
+                @endphp
+                Dicetak : <span class="text-warna">{{ $data }}</span>
+            </p>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Bulan</th>
+                    <th class="cust">Total</th>
+                </thead>
+                <tbody>
+                    @for ($i = 1; $i <= 12; $i++)
+                        @php
+                            setlocale(LC_ALL, 'IND');
+                            $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
+                        @endphp        
+                        <tr>
+                            <td>{{ $month }}</td>
+                            <td class="fw-bold">
+                                @if (!$id == 0)
+                                $ {{ number_format($result2[$i], 0, ',', '.') }}
+                                @else
+                                $ {{ number_format($hasil[$i], 0, ',', '.') }}
+                                @endif
+                            </td>
+                        </tr>
+                    @endfor
+                </tbody>
+                <tfoot>
+                    <th>Jumlah</th>
+                    <th>$ {{ number_format($pertahun2, 0, ',', '.') }}</th>
                 </tfoot>
             </table>
         </div>
