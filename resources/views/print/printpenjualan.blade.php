@@ -75,6 +75,7 @@
                     Dicetak : <span class="text-warna">{{ $data }}</span>
                 </p>
             </header>
+            <h3>LAPORAN PENJUALAN LOKAL</h3>
             <table class="table table-bordered">
                 <thead>
                     <th class="nopenj">No</th>
@@ -121,6 +122,56 @@
                     <tr style="border: 2px solid;">
                         <th colspan="6">Sudah Lunas</th>
                         <th>{{ $lunas }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <h3>LAPORAN PENJUALAN INTERNASIONAL</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th class="nopenj">No</th>
+                    <th>Kode Penjualan</th>
+                    <th class="cust">Nama Customer</th>
+                    <th>Tanggal Kirim</th>
+                    <th>Jumlah</th>
+                    <th>Keterangan</th>
+                    <th>Status</th>
+                </thead>
+                <tbody>
+                    @foreach ($penjualan2 as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->kode }}</td>
+                            <td>{{ $item->customer->nama_customer }}</td>
+                            @php
+                                setlocale(LC_ALL, 'IND');
+                                $tanggalini = date_create($item->tanggal);
+                                $tgl =  \Carbon\Carbon::parse($tanggalini)->formatLocalized('%d-%m-%Y');
+                            @endphp
+                            <td>{{ $tgl }}</td>
+                            <td>{{ number_format($item->jumlah, 0, ',', '.') }}</td>
+                            <td>{{ $item->keterangan }}</td>
+                            @if ($item->status == 0)
+                                <td class="text-warna">{{ $item->status }}</td>
+                            @else 
+                                <td>{{ $item->status }}</td>
+                            @endif
+                        </tr>
+                        
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr style="border: 2px solid;">
+                        <th colspan="4">Jumlah</th>
+                        <th>Rp {{ number_format($pertahun2, 0, ',', '.') }}</th>
+                        <th colspan="2"></th>
+                    </tr>
+                    <tr style="border: 2px solid;">
+                        <th colspan="6" class="text-warna">Belum Lunas</th>
+                        <th class="text-warna">{{ $belum2 }}</th>
+                    </tr>
+                    <tr style="border: 2px solid;">
+                        <th colspan="6">Sudah Lunas</th>
+                        <th>{{ $lunas2 }}</th>
                     </tr>
                 </tfoot>
             </table>

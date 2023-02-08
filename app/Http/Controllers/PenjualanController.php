@@ -114,16 +114,20 @@ class PenjualanController extends Controller
         // Jika Tahun bernilai 0
         if ($id == 0) {
             // Menampilkan seluruh penjualan yang disortir sesuai kolom tanggal_kirim
-            $penjualan = Penjualan::all()->sortBy('tanggal');
+            $penjualan = Penjualan::all()->where('jenis', 0)->sortBy('tanggal');
+            $penjualan2 = Penjualan::all()->where('jenis', 1)->sortBy('tanggal');
 
             // Menghitung jumlah status Lunas
-            $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
+            $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where('jenis', 0)->count();
+            $lunas2 = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where('jenis', 1)->count();
 
              // Menghitung jumlah status Belum Lunas
-            $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->count();
+            $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where('jenis', 0)->count();
+            $belum2 = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where('jenis', 1)->count();
             
             // Menjumlahkan tabel penjualan pada kolom harga jumlah
-            $pertahun = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+            $pertahun = DB::table('penjualans')->select('jumlah')->where('jenis', 0)->sum('jumlah');
+            $pertahun2 = DB::table('penjualans')->select('jumlah')->where('jenis', 1)->sum('jumlah');
 
             // Mengambil seluruh data penjualan
             $year = DB::table('penjualans')->get();
@@ -131,19 +135,24 @@ class PenjualanController extends Controller
         // Selain itu jika Tahun ada
         else {
             // Mengambil seluruh data yang ada dalam tabel Penjualan
-            $penjualan = Penjualan::where(DB::raw('YEAR(tanggal)'), $id)->get()->sortBy('tanggal');
+            $penjualan = Penjualan::where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 0)->get()->sortBy('tanggal');
+
+            $penjualan2 = Penjualan::where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 1)->get()->sortBy('tanggal');
     
             // Mengambil Data berdasarkan tahun yang dicocokkan didatabase dan parameter tahun
             $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->get();
     
             // Menghitung jumlah Status Lunas
-            $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->count();
+            $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 0)->count();
+            $lunas2 = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 1)->count();
     
             // Menghitung jumlah Status Belum Lunas
-            $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->count();
+            $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 0)->count();
+            $belum2 = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 1)->count();
     
             // Menjumlahkan tabel penjualan pada kolom harga jumlah
-            $pertahun = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->sum('jumlah');
+            $pertahun = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 0)->sum('jumlah');
+            $pertahun2 = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 1)->sum('jumlah');
         }
 
         // Pengulangan sebagai penampung nilai jumlah dengan variabel $year
@@ -178,9 +187,13 @@ class PenjualanController extends Controller
             // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
                 $pdf = Pdf::loadView('print.printpenjualan', [
                 'penjualan' => $penjualan, 
+                'penjualan2' => $penjualan2,
                 'lunas' => $lunas, 
+                'lunas2' => $lunas2, 
                 'belum' => $belum, 
+                'belum2' => $belum2, 
                 'pertahun' => $pertahun,
+                'pertahun2' => $pertahun2,
                 'id' => $id,
                 'result' => $result,
                 'hasil' => $hasil,
@@ -190,9 +203,13 @@ class PenjualanController extends Controller
         else {
             $pdf = Pdf::loadView('print.printpenjualan', [
                 'penjualan' => $penjualan, 
+                'penjualan2' => $penjualan2,
                 'lunas' => $lunas, 
+                'lunas2' => $lunas2, 
                 'belum' => $belum, 
+                'belum2' => $belum2, 
                 'pertahun' => $pertahun,
+                'pertahun2' => $pertahun2,
                 'id' => $id,
             ]);
         }
