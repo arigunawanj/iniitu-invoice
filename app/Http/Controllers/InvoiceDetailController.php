@@ -20,8 +20,8 @@ class InvoiceDetailController extends Controller
     public function index()
     {
         $dinvoice = InvoiceDetail::all();
-        $barang = Barang::all();
-        $customer = Customer::all();
+        $barang = Barang::all()->sortBy('nama_barang');
+        $customer = Customer::all()->sortBy('nama_customer');
         $profil = Profil::where('user_id', Auth::user()->id)->get();
         return view('pendataan.invoicedetail', compact('dinvoice', 'barang', 'customer', 'profil'));
     }

@@ -177,7 +177,7 @@
         .sub2 {
             font-family: 'OpenS-Regular'; 
             font-size: 12px;
-            margin: -6px 0 0 114px;
+            margin: -6px 0 0 94px;
         }
         .bill2 {
             font-family: 'Mont-Bold';
@@ -227,13 +227,17 @@
             @foreach ($kode as $item)
             <p class="sub">IICO {{ $item->invoice_code }}</p>
             <br>
-                @php
-                    $tanggal = date_create($item->invoice_code);
+                 @php
+                    $tanggal = date_create($item->invoice_date);
                     $hasiltanggal =  \Carbon\Carbon::parse($tanggal)->formatLocalized('%b %d, %Y');
+
+                    $tambahtanggal  = date('Y-m-d', strtotime($item->invoice_date . ' + 1 day'));
+                    $tanggal2 = date_create($tambahtanggal);
+                    $hasiltanggal2 =  \Carbon\Carbon::parse($tanggal2)->formatLocalized('%b %d, %Y');
                 @endphp
-            <p class="sub2" style="margin-top:-14px">Issued: {{ $hasiltanggal }}</p>
+            <p class="sub2" style="margin-top:-14px">Issued Date <span>: {{ $hasiltanggal }}</span></p>
             @endforeach
-            <p class="sub2">Due: On Receipt</p>
+            <p class="sub2" style="margin-top:-1px">Due Date <span style="margin-left:15px;">: {{ $hasiltanggal2 }}</span></p>
         </div>
     </div>
     <div class="row">
@@ -280,14 +284,14 @@
     <div class="container-grid">
         <div class="item-grid">
             <p class="block" style="margin-top:30px;">
-                ADMIN FEE <span style="margin-left: 50px">${{ $item->charge }}</span>
+                ADMIN FEE <span style="margin-left: 40px">${{ $item->charge }}</span>
             </p>
             
         </div>
         <div class="item-grid">
             @foreach ($kode as $item)
             <p class="block">
-                GRAND TOTAL <span style="margin-left: 4px">${{ $item->total_finale }}</span>
+                GRAND TOTAL <span style="margin-left: 14px">${{ $item->total_finale }}</span>
             </p>
             @endforeach
         </div>
