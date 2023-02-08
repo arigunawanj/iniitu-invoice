@@ -6,6 +6,20 @@
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendataan /</span> Laporan Penjualan</h4>
+            <a href="#" class="btn btn-success me-2 dropdown-toggle mb-3" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                <!--end::Svg Icon-->Cetak Data
+            </a>
+            @php
+                $now = date('Y');
+            @endphp
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    @for ($i = 2022; $i <= $now; $i++)
+                    <li><a class="dropdown-item" href="/printpenjualan/{{ $i }}">{{ $i }}</a></li>
+                    @endfor
+                    <li><a class="dropdown-item" href="#">Cetak Semua</a></li>
+                </ul>
             <!-- Basic Bootstrap Table -->
             <div class="card">
                 <h5 class="card-header">Laporan Penjualan Lokal</h5>

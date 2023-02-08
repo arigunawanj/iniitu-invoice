@@ -63,7 +63,7 @@
 </head>
 
 <body>
-    @if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal_kirim)'), $id)->exists() || $id == 0)
+    @if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->exists() || $id == 0)
         <div class="container">
             <header>
                 <h1 class="text-center">Laporan Penjualan</h1>

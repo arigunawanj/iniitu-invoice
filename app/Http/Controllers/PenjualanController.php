@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Profil;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PenjualanController extends Controller
 {
@@ -103,5 +105,99 @@ class PenjualanController extends Controller
             ]);
         }
         return redirect('penjualan');
+    }
+
+    public function print($id)
+    {
+        // Parameter $id adalah Tahun yang di cari
+
+        // Jika Tahun bernilai 0
+        if ($id == 0) {
+            // Menampilkan seluruh penjualan yang disortir sesuai kolom tanggal_kirim
+            $penjualan = Penjualan::all()->sortBy('tanggal');
+
+            // Menghitung jumlah status Lunas
+            $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->count();
+
+             // Menghitung jumlah status Belum Lunas
+            $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->count();
+            
+            // Menjumlahkan tabel penjualan pada kolom harga jumlah
+            $pertahun = DB::table('penjualans')->select('jumlah')->sum('jumlah');
+
+            // Mengambil seluruh data penjualan
+            $year = DB::table('penjualans')->get();
+        } 
+        // Selain itu jika Tahun ada
+        else {
+            // Mengambil seluruh data yang ada dalam tabel Penjualan
+            $penjualan = Penjualan::where(DB::raw('YEAR(tanggal)'), $id)->get()->sortBy('tanggal');
+    
+            // Mengambil Data berdasarkan tahun yang dicocokkan didatabase dan parameter tahun
+            $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->get();
+    
+            // Menghitung jumlah Status Lunas
+            $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->count();
+    
+            // Menghitung jumlah Status Belum Lunas
+            $belum = DB::table('penjualans')->select('status')->where('status', 'Belum Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->count();
+    
+            // Menjumlahkan tabel penjualan pada kolom harga jumlah
+            $pertahun = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->sum('jumlah');
+        }
+
+        // Pengulangan sebagai penampung nilai jumlah dengan variabel $year
+        foreach($year as $item){
+            for ($i=1; $i <= 12 ; $i++) { 
+                $result[$i] = 0;
+            }
+        }
+
+        // Menjumlahkan perbulan dengan pengulangan dengan variabel $year
+        foreach($year as $dt){
+            $bulan = date('n', strtotime($dt->tanggal));
+            $result[$bulan] += $dt->jumlah;
+        }
+
+        // Pengulangan sebagai penampung nilai jumlah dengan variabel $penjualan
+        foreach($penjualan as $item){
+            for ($i=1; $i <= 12 ; $i++) { 
+                $hasil[$i] = 0;
+            }
+        }
+
+         // Menjumlahkan perbulan dengan pengulangan dengan variabel $penjualan
+        foreach($penjualan as $dt){
+            $bulan = date('n', strtotime($dt->tanggal));
+            $hasil[$bulan] += $dt->jumlah;
+        }
+
+
+        // Jika Tahun didatabase dan parameternya cocok dan ada ATAU tahunnya bernilai 0
+        if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->exists() || $id == 0) {
+            // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
+                $pdf = Pdf::loadView('print.printpenjualan', [
+                'penjualan' => $penjualan, 
+                'lunas' => $lunas, 
+                'belum' => $belum, 
+                'pertahun' => $pertahun,
+                'id' => $id,
+                'result' => $result,
+                'hasil' => $hasil,
+            ]);
+        } 
+        // Sebaliknya jika tidak terdaftar
+        else {
+            $pdf = Pdf::loadView('print.printpenjualan', [
+                'penjualan' => $penjualan, 
+                'lunas' => $lunas, 
+                'belum' => $belum, 
+                'pertahun' => $pertahun,
+                'id' => $id,
+            ]);
+        }
+        
+        // PDF akan ditampilkan secara stream dengan ukuran A4-Landscape dan bisa didownload dengan nama yang sudah dideklarasikan
+        return $pdf->setPaper('a4', 'landscape')->stream('Data Penjualan - '. Carbon::now(). '.pdf');
     }
 }
