@@ -209,6 +209,16 @@
             font-family: 'OpenS-Regular';
             letter-spacing: 2px;
         }
+
+        .container-grid {
+            display: grid;
+        }
+
+        .item-grid {
+            grid-template-rows: 50px 50px 50px;
+            margin-left: 500px;
+            line-height: 5px;
+        }
        
 </style>
 <body>
@@ -292,19 +302,19 @@
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <div class="col right">
+    <div class="container-grid">
+        <div class="item-grid">
             <p>
                 <span class="badge-red">ADMIN CHARGE {{ singkat_angka($item->charge) }}</span>
             </p>
             
         </div>
-        <div class="col right">
+        <div class="item-grid">
             <p>
                 <span class="badge-red">DP MINIM 50% {{ singkat_angka($dp) }}</span>
             </p>
         </div>
-        <div class="col right">
+        <div class="item-grid">
             @foreach ($kode as $item)
             <p>
                 <span class="block">GRAND TOTAL {{ singkat_angka($item->total_final) }}</span>
