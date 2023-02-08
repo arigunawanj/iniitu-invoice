@@ -67,10 +67,19 @@
             border-radius: 5px;
         }
 
-    
-        .right .badge-red {
+        .rightlow {
+            margin-left: 0%;
+        }
+
+        .rightlow .block {
+            position: absolute;
+            right: 415px;
+        }
+
+        .rightlow .badge-red {
             position: relative;
-            right: -35px;
+            top: 4px;
+            right: -90px;
         }
 
         td {
@@ -302,19 +311,19 @@
             </tbody>
         </table>
     </div>
-    <div class="container-grid">
-        <div class="item-grid">
+    <div class="row">
+        <div class="col right">
             <p>
                 <span class="badge-red">ADMIN CHARGE {{ singkat_angka($item->charge) }}</span>
             </p>
             
         </div>
-        <div class="item-grid">
+        <div class="col right">
             <p>
                 <span class="badge-red">DP MINIM 50% {{ singkat_angka($dp) }}</span>
             </p>
         </div>
-        <div class="item-grid">
+        <div class="col right">
             @foreach ($kode as $item)
             <p>
                 <span class="block">GRAND TOTAL {{ singkat_angka($item->total_final) }}</span>

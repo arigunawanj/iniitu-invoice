@@ -59,7 +59,7 @@ class InvoiceDetailController extends Controller
             InvoiceDetail::create($request->all());
         }
 
-        return redirect('invoicedetail')->with('error', 'Berhasil Menambah Barang Faktur');
+        return redirect('invoicedetail')->with('success', 'Berhasil Menambah Barang Faktur');
 
     }
 
