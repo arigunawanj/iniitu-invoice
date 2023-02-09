@@ -171,7 +171,7 @@
                                         Lahir</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span class="input-group-text"><i class='bx bx-key'></i></span>
+                                            <span class="input-group-text"><i class='bx bxs-calendar'></i></span>
                                             <input type="date" id="basic-icon-default-email" name="tanggal_lahir"
                                                 class="form-control" placeholder="Masukkan Password..."
                                                 aria-label="john.doe" aria-describedby="basic-icon-default-email2"
@@ -183,7 +183,7 @@
                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Foto</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span class="input-group-text"><i class='bx bx-key'></i></span>
+                                            <span class="input-group-text"><i class='bx bx-photo-album'></i></span>
                                             <input type="file" id="basic-icon-default-email" name="foto"
                                                 class="form-control" placeholder="Masukkan Password..."
                                                 aria-label="john.doe" aria-describedby="basic-icon-default-email2" />

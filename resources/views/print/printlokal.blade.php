@@ -306,10 +306,10 @@
                 <table class="fipinTable">
                     <thead>
                         <tr>
-                            <th>Deskripsi Item</th>
+                            <th>Item Description</th>
                             <th>Qty</th>
-                            <th>Harga</th>
-                            <th>Diskon</th>
+                            <th>Price</th>
+                            <th>Discount</th>
                             <th>Subtotal</th>
                         </tr>
                     </thead>

@@ -11,7 +11,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('isi/assets/img/icons/iniitu.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('isi/assets/img/favicon.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
