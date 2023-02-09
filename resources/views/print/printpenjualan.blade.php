@@ -11,13 +11,10 @@
             border: 1px solid black;
             border-collapse: collapse;
             text-align: center;
-            
         }
-
         table {
             width: 100%;
         }
-        
         h1 {
             text-align: center;
         }
@@ -25,10 +22,9 @@
             text-align: center;
             margin-top: -15px
         }
-       th, td {
-        width: auto;
-       }
-        
+        th, td {
+            width: auto;
+        }
         .badge-red {
             padding: 5px;
             background-color: red;
@@ -88,6 +84,7 @@
                 </thead>
                 <tbody>
                     @foreach ($penjualan as $item)
+                    @if ($item->jenis == 0)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->kode }}</td>
@@ -106,7 +103,7 @@
                                 <td>{{ $item->status }}</td>
                             @endif
                         </tr>
-                        
+                    @endif
                     @endforeach
                 </tbody>
                 <tfoot>
@@ -139,7 +136,8 @@
                     <th>Status</th>
                 </thead>
                 <tbody>
-                    @foreach ($penjualan2 as $item)
+                    @foreach ($penjualan as $item)
+                    @if ($item->jenis == 1)      
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->kode }}</td>
@@ -158,6 +156,7 @@
                                 <td>{{ $item->status }}</td>
                             @endif
                         </tr>
+                    @endif
                         
                     @endforeach
                 </tbody>
@@ -195,12 +194,38 @@
                 <tbody>
                     @for ($i = 1; $i <= 12; $i++)
                         @php
+                            $result[$i] = 0;
+                            $hasil[$i] = 0;
+                        @endphp
+                    @endfor
+
+                    @foreach ($year as $dt)
+                    @if ($dt->jenis == 0)
+                        @php
+                            $bulan = date('n', strtotime($dt->tanggal));
+                            $result[$bulan] += $dt->jumlah;
+                        @endphp
+                    @endif
+                    @endforeach
+                    
+                    @foreach ($penjualan as $pj)
+                    @if ($pj->jenis == 0)
+                        @php 
+                            $bulan = date('n', strtotime($pj->tanggal));
+                            $hasil[$bulan] += $pj->jumlah;
+                        @endphp
+                    @endif
+                    @endforeach
+
+                    @for ($i = 1; $i <= 12; $i++)
+                        @php
                             setlocale(LC_ALL, 'IND');
                             $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
                         @endphp        
                         <tr>
                             <td>{{ $month }}</td>
                             <td class="fw-bold">
+                                
                                 @if (!$id == 0)
                                 Rp {{ number_format($result[$i], 0, ',', '.') }}
                                 @else
@@ -233,6 +258,31 @@
                 <tbody>
                     @for ($i = 1; $i <= 12; $i++)
                         @php
+                            $result[$i] = 0;
+                            $hasil[$i] = 0;
+                        @endphp
+                    @endfor
+
+                    @foreach ($year as $dt)
+                    @if ($dt->jenis == 1)
+                        @php
+                            $bulan = date('n', strtotime($dt->tanggal));
+                            $result[$bulan] += $dt->jumlah;
+                        @endphp
+                    @endif
+                    @endforeach
+
+                    @foreach ($penjualan as $pj)
+                    @if ($pj->jenis == 1)
+                        @php 
+                            $bulan = date('n', strtotime($pj->tanggal));
+                            $hasil[$bulan] += $pj->jumlah;
+                        @endphp
+                    @endif
+                    @endforeach
+
+                    @for ($i = 1; $i <= 12; $i++)
+                        @php
                             setlocale(LC_ALL, 'IND');
                             $month = strftime('%B', mktime(0, 0, 0, $i, 10)); 
                         @endphp        
@@ -240,7 +290,7 @@
                             <td>{{ $month }}</td>
                             <td class="fw-bold">
                                 @if (!$id == 0)
-                                $ {{ number_format($result2[$i], 0, ',', '.') }}
+                                $ {{ number_format($result[$i], 0, ',', '.') }}
                                 @else
                                 $ {{ number_format($hasil[$i], 0, ',', '.') }}
                                 @endif

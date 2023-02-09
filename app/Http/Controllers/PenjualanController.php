@@ -131,17 +131,17 @@ class PenjualanController extends Controller
 
             // Mengambil seluruh data penjualan
             $year = DB::table('penjualans')->get();
+            $year2 = DB::table('penjualans')->get();
         } 
         // Selain itu jika Tahun ada
         else {
             // Mengambil seluruh data yang ada dalam tabel Penjualan
-            $penjualan = Penjualan::where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 0)->get()->sortBy('tanggal');
+            $penjualan = Penjualan::where(DB::raw('YEAR(tanggal)'), $id)->get()->sortBy('tanggal');
 
-            $penjualan2 = Penjualan::where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 1)->get()->sortBy('tanggal');
+            // $penjualan2 = Penjualan::where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 1)->get()->sortBy('tanggal');
     
             // Mengambil Data berdasarkan tahun yang dicocokkan didatabase dan parameter tahun
-            $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 0)->get();
-            $year2 = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 1)->get();
+            $year = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->get();
     
             // Menghitung jumlah Status Lunas
             $lunas = DB::table('penjualans')->select('status')->where('status', 'Lunas')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 0)->count();
@@ -156,48 +156,11 @@ class PenjualanController extends Controller
             $pertahun2 = DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->where('jenis', 1)->sum('jumlah');
         }
 
-        // Pengulangan sebagai penampung nilai jumlah dengan variabel $year
-        foreach($year as $item){
-            for ($i=1; $i <= 12 ; $i++) { 
-                $result[$i] = 0;
-            }
-        }
-        foreach($year2 as $item){
-            for ($i=1; $i <= 12 ; $i++) { 
-                $result2[$i] = 0;
-            }
-        }
-
-        // Menjumlahkan perbulan dengan pengulangan dengan variabel $year
-        foreach($year as $dt){
-            $bulan = date('n', strtotime($dt->tanggal));
-            $result[$bulan] += $dt->jumlah;
-        }
-        foreach($year2 as $dt){
-            $bulan = date('n', strtotime($dt->tanggal));
-            $result2[$bulan] += $dt->jumlah;
-        }
-
-        // Pengulangan sebagai penampung nilai jumlah dengan variabel $penjualan
-        foreach($penjualan as $item){
-            for ($i=1; $i <= 12 ; $i++) { 
-                $hasil[$i] = 0;
-            }
-        }
-
-         // Menjumlahkan perbulan dengan pengulangan dengan variabel $penjualan
-        foreach($penjualan as $dt){
-            $bulan = date('n', strtotime($dt->tanggal));
-            $hasil[$bulan] += $dt->jumlah;
-        }
-
-
         // Jika Tahun didatabase dan parameternya cocok dan ada ATAU tahunnya bernilai 0
         if (DB::table('penjualans')->where(DB::raw('YEAR(tanggal)'), $id)->exists() || $id == 0) {
             // Halaman PDF akan di load dengan membawa data yang sudah di deklarasikan
                 $pdf = Pdf::loadView('print.printpenjualan', [
                 'penjualan' => $penjualan, 
-                'penjualan2' => $penjualan2,
                 'lunas' => $lunas, 
                 'lunas2' => $lunas2, 
                 'belum' => $belum, 
@@ -205,9 +168,8 @@ class PenjualanController extends Controller
                 'pertahun' => $pertahun,
                 'pertahun2' => $pertahun2,
                 'id' => $id,
-                'result' => $result,
-                'result2' => $result2,
-                'hasil' => $hasil,
+                // 'hasil' => $hasil,
+                'year' => $year,
             ]);
         } 
         // Sebaliknya jika tidak terdaftar
