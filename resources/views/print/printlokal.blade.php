@@ -292,7 +292,7 @@
                     @foreach ($kode as $item)
                     <p class="bill" style="margin-top: -18px; margin-bottom:18px; color:black; line-height:22px">{{ $item->nama_customer }}</p>
                     <p class="bill" style="margin-top: -19px; color:black; line-height:13px">{{ $item->alamat_customer }}</p>
-                    @if (!$item->telepon_customer == '-')
+                    @if ($item->telepon_customer == '-')
                         <p></p>
                     @else
                         <p class="bill" style="margin-top: -17px; color:black; line-height:19px">{{ $item->telepon_customer }}</p>
