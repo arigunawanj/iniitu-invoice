@@ -18,7 +18,7 @@
                     @for ($i = 2022; $i <= $now; $i++)
                     <li><a class="dropdown-item" href="/printpenjualan/{{ $i }}">{{ $i }}</a></li>
                     @endfor
-                    <li><a class="dropdown-item" href="#">Cetak Semua</a></li>
+                    <li><a class="dropdown-item" href="/printpenjualan/0">Cetak Semua</a></li>
                 </ul>
             <!-- Basic Bootstrap Table -->
             <div class="card">

@@ -176,7 +176,6 @@ class PenjualanController extends Controller
         else {
             $pdf = Pdf::loadView('print.printpenjualan', [
                 'penjualan' => $penjualan, 
-                'penjualan2' => $penjualan2,
                 'lunas' => $lunas, 
                 'lunas2' => $lunas2, 
                 'belum' => $belum, 
