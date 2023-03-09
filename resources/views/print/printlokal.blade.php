@@ -319,7 +319,6 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $item)
-                            
                         <tr>
                             <td style="text-align: left; padding-left:10px;">{{ $item->nama_barang }}</td>
                             <td>{{ $item->qty }}</td>
@@ -334,6 +333,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                @foreach ($kode as $ket)
+                    <p style="font-family: 'OpenS-Regular'; color:red; font-size:12px;">NB : {{ $ket->ket_faktur }}</p>
+                @endforeach
             </div>
             <div class="container-grid" style="margin-top:30px;">
                 <div class="item-grid">
