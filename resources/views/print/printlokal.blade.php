@@ -311,10 +311,10 @@
                     <thead>
                         <tr>
                             <th>Item Description</th>
-                            <th>Qty</th>
-                            <th>Price</th>
+                            <th style="text-align: left">Qty</th>
+                            <th style="text-align: left">Price</th>
                             <th>Discount</th>
-                            <th>Subtotal</th>
+                            <th style="text-align: left">Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -322,14 +322,14 @@
                             
                         <tr>
                             <td style="text-align: left; padding-left:10px;">{{ $item->nama_barang }}</td>
-                            <td>{{ $item->qty }}</td>
-                            <td>@ {{ singkat_angka($item->harga) }}</td>
+                            <td style="text-align: left">{{ $item->qty }}</td>
+                            <td style="text-align: left">@ {{ singkat_angka($item->harga) }}</td>
                             @if (!$item->diskon == 0)
                                 <td>{{ $item->diskon }} %</td>
                             @else
                                 <td>-</td>
                             @endif
-                            <td>{{ singkat_angka($item->subtotal) }}</td>
+                            <td style="text-align: left">{{ singkat_angka($item->subtotal) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
