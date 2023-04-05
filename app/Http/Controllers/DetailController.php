@@ -20,7 +20,7 @@ class DetailController extends Controller
     public function index()
     {
         $detail = Detail::all();
-        $barang = Barang::all()->sortBy('nama_barang');
+        $barang = Barang::all()->sortBy('kode_barang');
         $customer = Customer::all();
         $profil = Profil::where('user_id', Auth::user()->id)->get();
         return view('pendataan.detailfaktur', compact('detail', 'barang', 'customer', 'profil'));
