@@ -160,13 +160,18 @@ class FakturController extends Controller
 
     public function printfaktur($id)
     {
+        // DATA PADA TABEL FAKTUR DIGABUNGKAN DENGAN DETAIL FAKTUR DIGABUNGKAN LAGI DENGAN BARANG DIGABUNGKAN LAGI DENGAN CUSTOMER SETELAH ITU DIAMBIL DATANYA
         $data = DB::table('fakturs')->select('*')->join('details', 'details.kode_faktur', 'fakturs.kode_faktur')
         ->join('barangs', 'barangs.id', 'details.barang_id')->join('customers', 'customers.id', 'fakturs.customer_id')
         ->where('fakturs.kode_faktur', $id)->get();
 
+        // MENGAMBIL DATA YANG UNIK SAJA
         $kode = $data->unique('kode_faktur');
+
+        // MENGAMBIL DATA PROFIL SESUAI DENGAN YANG LOGIN
         $profil = Profil::where('user_id', Auth::user()->id)->get();
 
+        // MENGAMBIL TOTAL
         foreach ($kode as $key) {
             $total = $key->total_final;
         }
