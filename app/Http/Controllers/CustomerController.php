@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Profil;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Exports\CustomerExport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
@@ -101,5 +103,10 @@ class CustomerController extends Controller
     {
         $customer->delete();
         return redirect('customer')->with('success', 'Berhasil Hapus Data Customer');
+    }
+
+    public function customerExport()
+    {
+        return Excel::download(new CustomerExport, 'CustomerExport.xlsx');
     }
 }

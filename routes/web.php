@@ -52,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('printinv/{id}', [InvoiceController::class, 'printInv']);
     Route::get('printfaktur/{id}', [FakturController::class, 'printfaktur']);
     Route::get('printpenjualan/{id}', [PenjualanController::class, 'print']);
+
+    Route::get('barangexport', [BarangController::class, 'barangExport'])->name('barangexport');
+    Route::get('customerexport', [CustomerController::class, 'customerExport'])->name('customerexport');
      
 });
 

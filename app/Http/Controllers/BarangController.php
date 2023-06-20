@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Profil;
 use Illuminate\Http\Request;
+use App\Exports\BarangExport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
 class BarangController extends Controller
@@ -100,5 +102,10 @@ class BarangController extends Controller
     {
         $barang->delete();
         return redirect('barang')->with('success', 'Berhasil Hapus Barang');
+    }
+
+    public function barangExport()
+    {
+        return Excel::download(new BarangExport, 'BarangExport.xlsx');
     }
 }

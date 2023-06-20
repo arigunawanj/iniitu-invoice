@@ -8,6 +8,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendataan /</span> Data Customer</h4>
         <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#tambahData">Tambah Data</a>
+        <a href="{{ route('customerexport') }}" class="btn btn-primary mb-3">Export Data</a>
         <!-- Basic Bootstrap Table -->
         <div class="card">
             <h5 class="card-header">Data Customer</h5>
