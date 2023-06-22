@@ -243,13 +243,13 @@
     @php
     function singkat_angka($n, $presisi=1) {
             if ($n < 900) {
-                $format_angka = number_format($n, $presisi, ",",",");
+                $format_angka = number_format($n, $presisi, ".",",");
                 $simbol = '';
             } else if ($n < 900000000000) {
                 $format_angka = number_format($n / 1000, $presisi, ".",",");
                 $simbol = 'K';
             } else {
-                $format_angka = number_format($n / 1000000000000, $presisi, "," ,",");
+                $format_angka = number_format($n / 1000000000000, $presisi, "." ,",");
                 $simbol = 'T';
             }
         
